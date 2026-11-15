@@ -79,6 +79,31 @@ FORM = ('<style>.sub{max-width:720px;margin:44px auto 0;padding:0 20px}.sub labe
         '<div><input type="hidden" name="seller_id" value="6138345188489"><input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="Your email address"><button type="submit">Follow</button></div>'
         '<small>Sent through Gumroad. You can unsubscribe at any time.</small></form>')
 
+SHELVES = [("A", "Comparing and belonging", (1, 6, 12)), ("B", "Worry and setbacks", (2, 5, 11)),
+           ("C", "Feeling and noticing", (4, 7, 9)), ("D", "Doubt and people", (3, 8, 10))]
+SHELF_OF = {c: (l, n) for l, n, cs in SHELVES for c in cs}
+
+def menu():
+    cols = "".join(
+        f'<div class="shelf"><p class="shelf-h"><b>Shelf {l}</b> {E(n)}</p><ul>' +
+        "".join(f'<li><a href="{BASE}feelings/{P[c-1][0]}/"><span>{c:02d}</span>{E(P[c-1][2])}</a></li>' for c in cs) + "</ul></div>"
+        for l, n, cs in SHELVES)
+    return ('<details class="shelves"><summary>Browse the shelves</summary><div class="mega">' + cols +
+            f'<div class="mega-f"><a href="{BASE}read/">Read the first chapter free</a><a href="{BASE}feelings/">All twelve feelings</a><a href="{BASE}about/">About the author</a></div></div></details>')
+
+MENU_CSS = """.shelves{position:static}.shelves summary{list-style:none;cursor:pointer;font:600 16px var(--body,system-ui,sans-serif);padding:10px 14px;border:1px solid var(--rule,#ddd2c9);border-radius:999px;color:var(--ink,#211a17);display:inline-flex;gap:8px;align-items:center;user-select:none}
+.shelves summary::-webkit-details-marker{display:none}.shelves summary::after{content:"";width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px)}
+.shelves[open] summary::after{transform:rotate(-135deg) translateY(-1px)}.shelves summary:focus-visible,.shelves a:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:2px}
+.mega{position:absolute;left:20px;right:20px;top:100%;z-index:50;background:var(--card,#fffdfa);border:1px solid var(--rule,#ddd2c9);border-radius:14px;padding:22px 24px 16px;box-shadow:0 22px 50px -22px rgba(0,0,0,.45);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;max-width:1120px;margin-inline:auto}
+.shelf-h{font:500 15px/1.3 var(--body,sans-serif);color:var(--muted,#6b5f58);margin:0 0 8px;padding-bottom:8px;border-bottom:2px solid var(--accent,#b4472a)}.shelf-h b{color:var(--accent,#b4472a);letter-spacing:.06em;text-transform:uppercase;font-size:12px;display:block}
+.shelf ul{list-style:none;margin:0;padding:0}.shelf li{margin:0 0 9px}.shelf a{color:var(--ink,#211a17);text-decoration:none;font:500 16px/1.3 var(--body,sans-serif);display:flex;gap:10px}.shelf a:hover{text-decoration:underline;text-underline-offset:3px}
+.shelf a span{color:var(--muted,#6b5f58);font-variant-numeric:tabular-nums;min-width:1.6em}
+.mega-f{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 26px;border-top:1px solid var(--rule,#ddd2c9);padding-top:14px}.mega-f a{color:var(--ink,#211a17);font:600 15px var(--body,sans-serif)}
+@media (max-width:860px){.mega{grid-template-columns:1fr 1fr}}@media (max-width:520px){.mega{grid-template-columns:1fr;left:8px;right:8px;max-height:75vh;overflow:auto}}
+.cat{display:inline-block;border:1px solid var(--rule,#ddd2c9);border-radius:6px;padding:7px 12px;margin:22px 0 4px;font:600 13px var(--body,sans-serif);letter-spacing:.07em;text-transform:uppercase;color:var(--muted,#6b5f58);background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(180,71,42,.12) 23px 24px)}.cat b{color:var(--accent,#b4472a)}
+footer.wrap{padding:52px 20px 60px}"""
+MENU_JS = """<script>(function(){var d=document.querySelector('.shelves');if(!d)return;document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus();}});document.addEventListener('click',function(e){if(d.open&&!d.contains(e.target))d.open=false;});})();</script>"""
+
 CSS = """:root{--bg:#f8f4f1;--ink:#211a17;--muted:#6b5f58;--rule:#ddd2c9;--accent:#b4472a;--card:#fffdfa;--display:"Newsreader",Georgia,serif;--body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif}
 @media (prefers-color-scheme:dark){:root{--bg:#1c1714;--ink:#f1e9e2;--muted:#b3a69d;--rule:#3a312b;--accent:#e0805f;--card:#251f1b}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 19px/1.65 var(--body)}
@@ -106,13 +131,13 @@ def head(title, desc, url, extra=""):
 <meta name="author" content="Ahsan Raza"><meta name="theme-color" content="#f8f4f1">
 <link rel="icon" href="../../assets/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48.png"><link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/Newsreader-600.woff2"><link rel="stylesheet" href="../../assets/fonts.css">
-<style>{CSS}</style>{extra}</head><body>
-<nav class="wrap"><a href="{BASE}">Ahsan Raza</a><a href="{BASE}feelings/">All twelve feelings</a></nav><main class="wrap">"""
+<style>{CSS}nav.wrap{{position:relative}}{MENU_CSS}</style>{extra}</head><body>
+<nav class="wrap"><a href="{BASE}">Ahsan Raza</a>{menu()}</nav><main class="wrap">"""
 
 def buy(slug):
     return BUY + f"&utm_source=site&utm_medium=feelings&utm_campaign={slug}"
 
-FOOT = f"""</main><footer class="wrap">&copy; Ahsan Raza. English (British).</footer></body></html>"""
+FOOT = f"""</main><footer class="wrap">&copy; Ahsan Raza. English (British).</footer>{MENU_JS}</body></html>"""
 os.makedirs("feelings", exist_ok=True)
 urls = [BASE + "feelings/"]
 
@@ -133,6 +158,7 @@ for i, (slug, ch, h1, feel, covers, ex) in enumerate(P, 1):
     extra = f'<script type="application/ld+json">{ld}</script><script type="application/ld+json">{ld2}</script>'
     pn = "<div class=\"pn\"><span>" + (f'<a href="../{prev[0]}/">&larr; {E(prev[2])}</a>' if prev else "") + "</span><span>" + (f'<a href="../{nxt[0]}/">{E(nxt[2])} &rarr;</a>' if nxt else "") + "</span></div>"
     body = f"""<p class="crumb"><a href="{BASE}">The book</a> / <a href="{BASE}feelings/">Twelve feelings</a> / Chapter {i}</p>
+<div class="cat"><b>Shelf {SHELF_OF[i][0]}</b> &middot; {E(SHELF_OF[i][1])} &middot; Chapter {i:02d} of 12</div>
 <h1>{E(h1)}</h1>
 <p class="lede">{E(feel)}</p>
 <h2>You are not the only one</h2>
@@ -193,5 +219,12 @@ if url not in sm:
 t = open("index.html", encoding="utf8").read()
 if "about/" not in t:
     t = t.replace('&copy; Ahsan Raza. English (British).</footer>', '&copy; Ahsan Raza. English (British). <a href="about/">About the author</a></footer>', 1)
+    open("index.html", "w", encoding="utf8").write(t)
+# ---- shelves menu on the home page ----
+t = open("index.html", encoding="utf8").read()
+if "class=\"shelves\"" not in t:
+    t = t.replace('<div class="nav-r">', '<div class="nav-r">' + menu(), 1)
+    t = t.replace("</style>", ".nav{position:relative}footer.wrap{padding-block:52px 60px}" + MENU_CSS + "</style>", 1)
+    t = t.replace("</body>", MENU_JS + "</body>", 1)
     open("index.html", "w", encoding="utf8").write(t)
 print("about ok")
