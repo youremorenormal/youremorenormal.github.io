@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://ahsanraza3434.github.io/youre-more-normal/sitemap.xml
+Sitemap: https://youremorenormal.github.io/sitemap.xml
