@@ -70,10 +70,24 @@ P = [
   "Ten minutes: phone face down, then write what your hands did."),
 ]
 N = len(P)
+KW = [
+ "feeling not normal, everyone else has it figured out, comparing yourself to others, social media comparison, self help book",
+ "cant stop worrying, worry at night, anxious thoughts at 2am, overthinking, how to stop worrying",
+ "how to make a decision, asking everyone for advice, trust yourself, indecision, self help book",
+ "life feels grey, seeing your day differently, everyday life, feeling flat, self help book",
+ "rejection email, coping with setbacks, bounce back after failure, feeling disappointed, self help book",
+ "harsh inner voice, self criticism, why am i so hard on myself, comparing yourself, negative self talk",
+ "crying over small things, suppressed feelings, naming emotions, feelings that wait, self help book",
+ "imposter feelings, fraud at work, feeling like a fake, new job doubt, waiting to be found out",
+ "good days disappear, small good things, noticing positives, gratitude notebook, self help book",
+ "reaching out to friends, awkward to message, loneliness, who supports you, friendship",
+ "perfectionism, cant finish anything, fear of getting it wrong, finish line moves, procrastination",
+ "do people notice my mistakes, spotlight effect, self conscious, feeling watched, social anxiety feelings",
+]
 
 FORM = ('<style>.sub{max-width:720px;margin:44px auto 0;padding:0 20px}.sub label{display:block;font:600 20px/1.3 var(--display,Georgia,serif);margin-bottom:10px}'
         '.sub div{display:flex;gap:8px;flex-wrap:wrap}.sub input[type=email]{flex:1 1 220px;min-height:48px;padding:0 14px;font:inherit;font-size:17px;border:1px solid var(--rule,#ddd2c9);border-radius:10px;background:var(--card,#fffdfa);color:var(--ink,#211a17)}'
-        '.sub button{min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--ink,#211a17);color:var(--bg,#f8f4f1);font:600 17px var(--body,system-ui,sans-serif);cursor:pointer}'
+        '.sub button{min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--ink,#211a17);color:var(--bg,var(--paper,#f8f4f1));font:600 17px var(--body,system-ui,sans-serif);cursor:pointer}'
         '.sub small{display:block;margin-top:8px;color:var(--muted,#6b5f58);font-size:15px}.sub input:focus-visible,.sub button:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:2px}</style>'
         '<form class="sub" action="https://gumroad.com/follow_from_embed_form" method="post"><label for="sub-email">Want an email from the author when there is something new?</label>'
         '<div><input type="hidden" name="seller_id" value="6138345188489"><input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="Your email address"><button type="submit">Follow</button></div>'
@@ -83,12 +97,18 @@ SHELVES = [("A", "Comparing and belonging", (1, 6, 12)), ("B", "Worry and setbac
            ("C", "Feeling and noticing", (4, 7, 9)), ("D", "Doubt and people", (3, 8, 10))]
 SHELF_OF = {c: (l, n) for l, n, cs in SHELVES for c in cs}
 
+TOGGLE = ('<button type="button" class="theme-toggle" aria-label="Switch colour theme" title="Switch colour theme">'
+          '<svg class="i-moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M21 14.5A9 9 0 0 1 9.5 3a9 9 0 1 0 11.5 11.5z"/></svg>'
+          '<svg class="i-sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></g></svg></button>')
+def tools():
+    return '<div class="tools">' + TOGGLE + menu() + '</div>'
+
 def menu():
     cols = "".join(
         f'<div class="shelf"><p class="shelf-h"><b>Shelf {l}</b> {E(n)}</p><ul>' +
         "".join(f'<li><a href="{BASE}feelings/{P[c-1][0]}/"><span>{c:02d}</span>{E(P[c-1][2])}</a></li>' for c in cs) + "</ul></div>"
         for l, n, cs in SHELVES)
-    return ('<details class="shelves"><summary>Browse the shelves</summary><div class="mega">' + cols +
+    return ('<details class="shelves"><summary>Browse<span class="lg"> the shelves</span></summary><div class="mega">' + cols +
             f'<div class="mega-f"><a href="{BASE}read/">Read the first chapter free</a><a href="{BASE}feelings/">All twelve feelings</a><a href="{BASE}about/">About the author</a></div></div></details>')
 
 MENU_CSS = """.shelves{position:static}.shelves summary{list-style:none;cursor:pointer;font:600 16px var(--body,system-ui,sans-serif);padding:10px 14px;border:1px solid var(--rule,#ddd2c9);border-radius:999px;color:var(--ink,#211a17);display:inline-flex;gap:8px;align-items:center;user-select:none}
@@ -101,11 +121,13 @@ MENU_CSS = """.shelves{position:static}.shelves summary{list-style:none;cursor:p
 .mega-f{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 26px;border-top:1px solid var(--rule,#ddd2c9);padding-top:14px}.mega-f a{color:var(--ink,#211a17);font:600 15px var(--body,sans-serif)}
 @media (max-width:860px){.mega{grid-template-columns:1fr 1fr}}@media (max-width:520px){.mega{grid-template-columns:1fr;left:8px;right:8px;max-height:75vh;overflow:auto}}
 .cat{display:inline-block;border:1px solid var(--rule,#ddd2c9);border-radius:6px;padding:7px 12px;margin:22px 0 4px;font:600 13px var(--body,sans-serif);letter-spacing:.07em;text-transform:uppercase;color:var(--muted,#6b5f58);background:repeating-linear-gradient(0deg,transparent 0 23px,rgba(180,71,42,.12) 23px 24px)}.cat b{color:var(--accent,#b4472a)}
-footer.wrap{padding:52px 20px 60px}"""
-MENU_JS = """<script>(function(){var d=document.querySelector('.shelves');if(!d)return;document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus();}});document.addEventListener('click',function(e){if(d.open&&!d.contains(e.target))d.open=false;});})();</script>"""
+footer.wrap{padding:52px 20px 60px}
+.tools{display:flex;align-items:center;gap:10px}.theme-toggle{width:42px;height:42px;border-radius:999px;border:1px solid var(--rule,#ddd2c9);background:transparent;color:var(--ink,#211a17);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0}.theme-toggle:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:2px}.theme-toggle .i-sun{display:none}:root[data-theme=dark] .theme-toggle .i-sun{display:block}:root[data-theme=dark] .theme-toggle .i-moon{display:none}@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .theme-toggle .i-sun{display:block}:root:not([data-theme=light]) .theme-toggle .i-moon{display:none}}nav.wrap{flex-wrap:wrap;gap:8px}@media (max-width:480px){.shelves summary .lg{display:none}}"""
+MENU_JS = """<script>(function(){var r=document.documentElement,b=document.querySelector('.theme-toggle');function cur(){return r.dataset.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');}function lab(){if(b){var d=cur()==='dark';b.setAttribute('aria-label',d?'Switch to light theme':'Switch to dark theme');b.title=b.getAttribute('aria-label');}}lab();if(b)b.addEventListener('click',function(){var n=cur()==='dark'?'light':'dark';r.dataset.theme=n;try{localStorage.setItem('ymn-theme',n);}catch(e){}lab();});var d=document.querySelector('.shelves');if(!d)return;document.addEventListener('keydown',function(e){if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus();}});document.addEventListener('click',function(e){if(d.open&&!d.contains(e.target))d.open=false;});})();</script>"""
 
 CSS = """:root{--bg:#f8f4f1;--ink:#211a17;--muted:#6b5f58;--rule:#ddd2c9;--accent:#b4472a;--card:#fffdfa;--display:"Newsreader",Georgia,serif;--body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif}
-@media (prefers-color-scheme:dark){:root{--bg:#1c1714;--ink:#f1e9e2;--muted:#b3a69d;--rule:#3a312b;--accent:#e0805f;--card:#251f1b}}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1c1714;--ink:#f1e9e2;--muted:#b3a69d;--rule:#3a312b;--accent:#e0805f;--card:#251f1b}}
+:root[data-theme=dark]{--bg:#1c1714;--ink:#f1e9e2;--muted:#b3a69d;--rule:#3a312b;--accent:#e0805f;--card:#251f1b}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 19px/1.65 var(--body)}
 .wrap{max-width:720px;margin:0 auto;padding:0 20px}
 nav{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:16px}
@@ -126,13 +148,13 @@ footer{color:var(--muted);font-size:15px;padding:40px 0}"""
 
 def head(title, desc, url, extra=""):
     return f"""<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{E(title)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{url}">
-<meta name="robots" content="index,follow,max-image-preview:large"><meta property="og:type" content="article"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{BASE}assets/social.jpg"><meta property="og:locale" content="en_GB"><meta name="twitter:card" content="summary_large_image">
+<script>try{{var t=localStorage.getItem('ymn-theme');if(t)document.documentElement.dataset.theme=t;}}catch(e){{}}</script><title>{E(title)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{url}">
+<meta name="robots" content="index,follow,max-image-preview:large"><link rel="alternate" hreflang="en-GB" href="{url}"><link rel="alternate" hreflang="x-default" href="{url}"><meta property="og:site_name" content="You're More Normal Than You Think"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta property="og:image:alt" content="The book You're More Normal Than You Think by Ahsan Raza"><meta name="twitter:image" content="{BASE}assets/social.jpg"><meta name="twitter:title" content="{E(title)}"><meta name="twitter:description" content="{E(desc)}"><meta property="og:type" content="article"><meta property="og:title" content="{E(title)}"><meta property="og:description" content="{E(desc)}"><meta property="og:url" content="{url}"><meta property="og:image" content="{BASE}assets/social.jpg"><meta property="og:locale" content="en_GB"><meta name="twitter:card" content="summary_large_image">
 <meta name="author" content="Ahsan Raza"><meta name="theme-color" content="#f8f4f1">
 <link rel="icon" href="../../assets/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48.png"><link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/Newsreader-600.woff2"><link rel="stylesheet" href="../../assets/fonts.css">
 <style>{CSS}nav.wrap{{position:relative}}{MENU_CSS}</style>{extra}</head><body>
-<nav class="wrap"><a href="{BASE}">Ahsan Raza</a>{menu()}</nav><main class="wrap">"""
+<nav class="wrap"><a href="{BASE}">Ahsan Raza</a>{tools()}</nav><main class="wrap">"""
 
 def buy(slug):
     return BUY + f"&utm_source=site&utm_medium=feelings&utm_campaign={slug}"
@@ -155,7 +177,7 @@ for i, (slug, ch, h1, feel, covers, ex) in enumerate(P, 1):
           f'{{"@type":"ListItem","position":3,"name":"{E(h1)}","item":"{url}"}}]}}')
     ld2 = ('{"@context":"https://schema.org","@type":"WebPage","name":"' + h1.replace('"', "'") + '","url":"' + url +
            '","inLanguage":"en-GB","author":{"@type":"Person","name":"Ahsan Raza"},"isPartOf":{"@type":"Book","name":"You\'re More Normal Than You Think","author":{"@type":"Person","name":"Ahsan Raza"}}}')
-    extra = f'<script type="application/ld+json">{ld}</script><script type="application/ld+json">{ld2}</script>'
+    extra = f'<meta name="keywords" content="{E(KW[i-1])}"><script type="application/ld+json">{ld}</script><script type="application/ld+json">{ld2}</script>'
     pn = "<div class=\"pn\"><span>" + (f'<a href="../{prev[0]}/">&larr; {E(prev[2])}</a>' if prev else "") + "</span><span>" + (f'<a href="../{nxt[0]}/">{E(nxt[2])} &rarr;</a>' if nxt else "") + "</span></div>"
     body = f"""<p class="crumb"><a href="{BASE}">The book</a> / <a href="{BASE}feelings/">Twelve feelings</a> / Chapter {i}</p>
 <div class="cat"><b>Shelf {SHELF_OF[i][0]}</b> &middot; {E(SHELF_OF[i][1])} &middot; Chapter {i:02d} of 12</div>
@@ -223,7 +245,12 @@ if "about/" not in t:
 # ---- shelves menu on the home page ----
 t = open("index.html", encoding="utf8").read()
 if "class=\"shelves\"" not in t:
-    t = t.replace('<div class="nav-r">', '<div class="nav-r">' + menu(), 1)
+    t = t.replace('<div class="nav-r">', '<div class="nav-r">' + tools(), 1)
+    DARK = ("--paper:oklch(19% .01 40);--paper-2:oklch(23% .011 40);--cotton:oklch(21% .01 40);--card:oklch(25% .011 40);--ink:oklch(94% .008 70);--ink-2:oklch(88% .009 70);--muted:oklch(72% .012 55);"
+            "--rule:oklch(33% .01 45);--rule-2:oklch(40% .01 45);--accent:oklch(72% .13 35);--accent-soft:oklch(30% .04 40);--board:oklch(14% .01 40);--board-type:oklch(95% .006 70);--board-muted:oklch(75% .01 60);--board-rule:oklch(30% .012 45);--shade:0% 0 0;--lit:30% .01 50;")
+    t = t.replace("</style>", "@media (prefers-color-scheme:dark){:root:not([data-theme=light]){" + DARK + "color-scheme:dark}:root:not([data-theme=light]) .btn--ink{background:oklch(94% .008 70);color:oklch(19% .01 40)}}:root[data-theme=dark]{" + DARK + "color-scheme:dark}:root[data-theme=dark] .btn--ink{background:oklch(94% .008 70);color:oklch(19% .01 40)}" + "</style>", 1)
+    t = t.replace("<head>", "<head>\n<script>try{var t=localStorage.getItem('ymn-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>", 1)
+    t = t.replace('<meta name="author" content="Ahsan Raza">', '<meta name="author" content="Ahsan Raza"><meta name="keywords" content="self help book, you\'re more normal than you think, worry at night, comparing yourself to others, harsh inner voice, imposter feelings, feeling not normal, ebook, Ahsan Raza"><link rel="alternate" hreflang="en-GB" href="' + BASE + '"><link rel="alternate" hreflang="x-default" href="' + BASE + '"><meta property="og:site_name" content="You\'re More Normal Than You Think"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta property="og:image:alt" content="The book You\'re More Normal Than You Think by Ahsan Raza">', 1)
     t = t.replace("</style>", ".nav{position:relative}footer.wrap{padding-block:52px 60px}" + MENU_CSS + "</style>", 1)
     t = t.replace("</body>", MENU_JS + "</body>", 1)
     open("index.html", "w", encoding="utf8").write(t)
