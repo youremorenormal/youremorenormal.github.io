@@ -141,9 +141,32 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
   .nav-r .link{display:none}
 }
 @media (max-width:520px){.cards{grid-template-columns:minmax(0,1fr)}.card p{font-size:22px}}
+.reader .rh1{font-size:34px;margin:0 0 8px}
+
+.tabs{margin:34px auto 0;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.tab{font:500 16px/1.2 var(--body);padding:12px 18px;border-radius:999px;border:1px solid var(--rule-2);background:var(--card);color:var(--ink);cursor:pointer;transition:background .15s,color .15s}
+.tab:hover{background:var(--paper-2)}
+.tab[aria-selected=true]{background:var(--board);color:var(--board-type);border-color:var(--board)}
+.finder-panel{margin:26px auto 0;max-width:820px;display:grid;gap:14px}
+.fcard{padding:20px 24px;background:var(--card);border-radius:14px;box-shadow:var(--lift)}
+.fcard .s{font:500 22px/1.3 var(--display);letter-spacing:-.01em}
+.fcard .g{margin-top:10px;color:var(--muted);font-size:16px;line-height:1.55}
+.fcard .g b{color:var(--accent);font-weight:600}
+.finder-note{margin-top:18px;text-align:center;color:var(--muted);font-size:15px}
+.sticky{position:fixed;left:50%;bottom:16px;transform:translate(-50%,140%);z-index:40;width:min(680px,calc(100% - 24px));display:flex;align-items:center;gap:14px;padding:10px 12px 10px 18px;background:var(--board);color:var(--board-type);border-radius:14px;box-shadow:0 16px 40px -12px oklch(var(--shade)/.7);transition:transform .25s ease-out}
+.sticky.on{transform:translate(-50%,0)}
+.sticky .t{flex:1;min-width:0;font:600 17px/1.2 var(--display);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticky .t small{font:400 14px/1 var(--body);color:var(--board-muted);margin-left:8px}
+.sticky .btn{min-height:42px;padding:0 18px;font-size:15px;background:var(--card);color:var(--ink);box-shadow:none}
+.sticky .free{font:500 14px/1 var(--body);color:var(--board-type);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.sticky .x{background:transparent;border:0;color:var(--board-muted);font:400 22px/1 var(--body);cursor:pointer;padding:6px 8px}
+@media (max-width:640px){.sticky .free,.sticky .t small{display:none}}
+@media (prefers-reduced-motion:reduce){.sticky{transition:none}}
+.skip{position:absolute;left:-999px;top:8px;background:var(--board);color:var(--board-type);padding:10px 14px;border-radius:8px;z-index:60}.skip:focus{left:8px}
 </style>
 </head>
 <body>
+<a class="skip" href="#top">Skip to the content</a>
 <header class="wrap nav">
   <a class="mark" href="#top">Ahsan Raza</a>
   <div class="nav-r"><a class="link" href="#sample">Free sample</a><a class="btn btn--ink btn--sm" href="https://ahsanrazabooks.gumroad.com/l/sdpapr" rel="noopener">Get the book</a></div>
@@ -193,18 +216,13 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
   </div>
 </section>
 
-<section>
-  <div class="wrap index">
-    <div>
-      <p class="eyebrow">For the bad night</p>
-      <h2 style="margin-top:14px">Not sure where to start? Start with how you feel.</h2>
-      <p class="lead">The back of the book has a Read This When index. Find the moment that sounds like yours and it points you to the right page.</p>
-    </div>
-    <ul class="picks">
-      <li>It&rsquo;s 2 a.m. and the same thought has come round again.<span>Chapter 2 &rarr;</span></li>
-      <li>You scrolled through other people&rsquo;s lives and came out feeling smaller.<span>Chapter 1 &rarr;</span></li>
-      <li>One short message has taken over your whole evening.<span>Chapter 4 &rarr;</span></li>
-    </ul>
+<section id="finder">
+  <div class="wrap">
+    <div class="center"><p class="eyebrow">For the bad night</p><h2 style="margin-top:14px">Not sure where to start? Pick how you feel.</h2>
+    <p class="lead">The back of the book has a Read This When index. Choose a moment and see where it sends you.</p></div>
+    <div class="tabs" role="tablist" aria-label="How are you feeling?"></div>
+    <div class="finder-panel" id="finder-panel" role="tabpanel" tabindex="0" aria-live="polite"></div>
+    <p class="finder-note">This is a taste of the index. The book has 23 entries in all.</p>
   </div>
 </section>
 
@@ -215,12 +233,13 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
       <h2 style="margin-top:14px">Read the start for free</h2>
       <p class="lead">The introduction and all of Chapter 1. Read it here, or take it with you.</p>
       <div class="btns">
-        <a class="btn btn--ink" href="sample/Youre-More-Normal-Than-You-Think-free-sample.pdf">Open the sample (PDF)</a>
+        <a class="btn btn--ink" href="read/">Read it online</a>
+        <a class="btn btn--paper" href="sample/Youre-More-Normal-Than-You-Think-free-sample.pdf">Open the sample (PDF)</a>
         <a class="btn btn--paper" href="sample/Youre-More-Normal-Than-You-Think-free-sample.epub" download>Get the sample (EPUB)</a>
       </div>
       <p class="small">No sign-up. No checkout.</p>
     </div>
-    <div class="reader" tabindex="0" role="region" aria-label="Free sample: the introduction and Chapter 1"><h1>Introduction</h1>
+    <div class="reader" tabindex="0" role="region" aria-label="Free sample: the introduction and Chapter 1"><h2 class="rh1">Introduction</h2>
 <h2>Read this first</h2>
 <p>When I was young, I was sure I wasn&#8217;t normal.</p>
 <p>I didn&#8217;t mean it as a boast. It felt more like a diagnosis. Other people seemed to get through their days in some ordinary way, and I seemed to be running a different, stranger machine. What I went through, how I handled my feelings, how I reacted to things: nobody else did that. So I couldn&#8217;t ask for help, because I couldn&#8217;t think how to explain it. Who would understand a problem that only one person had?</p>
@@ -249,7 +268,7 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
 <p>One promise: nothing in here asks you to become someone else.</p>
 <p>Ahsan Raza</p><hr><p class="chno">Chapter 1</p>
 
-<h1>Why It&#8217;s Normal to Feel Not Normal</h1>
+<h2 class="rh1">Why It&#8217;s Normal to Feel Not Normal</h2>
 <blockquote>
 <p>&#8220;I am a man, and feel for all mankind.&#8221;</p>
 <p>Terence, <em>The Self-Tormentor</em>, Act 1, Scene 1 (translated by George Colman, 1768)</p>
@@ -379,5 +398,39 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
 </main>
 
 <footer class="wrap">&copy; Ahsan Raza. English (British).</footer>
+<div class="sticky" id="sticky" role="region" aria-label="Get the book" aria-hidden="true">
+  <div class="t">You&rsquo;re more normal than you think<small>$6.99</small></div>
+  <a class="free" href="read/">Read free</a>
+  <a class="btn" href="https://ahsanrazabooks.gumroad.com/l/sdpapr" rel="noopener" tabindex="-1">Get the book</a>
+  <button class="x" type="button" aria-label="Hide this bar">&times;</button>
+</div>
+<script>
+(function(){
+  var D=[{"h": "When the worry will not leave", "e": [{"s": "It’s 2 a.m. and the same thought has come round again.", "g": "Practice, Chapter 2, “Sort one worry and log it to check next week”. Sorting it into what you fear and what you know gives your mind somewhere to put it down."}, {"s": "You’re waiting for news you can’t hurry.", "g": "Chapter 2, “Two minutes: say the fear, then say what you know”. Saying both out loud shrinks the fear back to its real size."}, {"s": "You have already pictured the worst case, in detail.", "g": "Chapter 5, “Two minutes: check your Worry log against what happened”. Your own old worries show how often the worst case never came."}, {"s": "One short message has taken over your whole evening.", "g": "Practice, Chapter 4, “Give three moments from this week a second story”. The first story you told yourself isn’t the only one that fits."}]}, {"h": "When you feel behind or not good enough", "e": [{"s": "You scrolled through other people’s lives and came out feeling smaller.", "g": "Chapter 1, “Two minutes: one post, and what it leaves out”. You’re comparing your full story with someone else’s edited one."}, {"s": "Someone your age is doing better and it’s sitting in your chest.", "g": "Chapter 6, “Two minutes: start a comparison tally for today”. A tally for one day turns a background hum into a number on a page."}, {"s": "The voice in your head said \"typical\" before you had even finished.", "g": "Practice, Chapter 6, “Catch three lines and answer them as a friend would”. You answer friends kindly without effort. Answer yourself the same way, by name."}, {"s": "You have just been praised and your first thought is that they are wrong.", "g": "Practice, Chapter 8, “What I fear they’ll find out, and what the record shows”. The record is longer than the fear."}, {"s": "You’re waiting to feel ready before you apply, ask or speak up.", "g": "Chapter 8, “Two minutes: one time you did it before you felt ready”. You have done it before. Find the time."}, {"s": "You’re on the fifth draft of something nobody asked you to redraft.", "g": "Chapter 11, “Two minutes: write where it stops, then set the timer”. Decide where good enough is before you start, not after midnight."}]}, {"h": "When something has gone wrong", "e": [{"s": "An email has just started with \"Unfortunately\".", "g": "Chapter 5, “The plan for the evening after something goes wrong”. Tonight needs a plan, not a verdict."}, {"s": "You’re sure you’ll feel like this for months.", "g": "Chapter 5, “How long you think it will hurt”, then Practice, Chapter 5, “Write a short debrief of your setback”. The hurt fades faster than the forecast says."}, {"s": "You have asked five people and you’re still not sure what to do.", "g": "Practice, Chapter 3, “Write the letter your clearest self would send”. The answer is often already there, and often one you don’t want."}, {"s": "You can give a friend clear advice but not yourself.", "g": "Chapter 3, “Three minutes: answer it as a friend”. Step back far enough to see your own problem as theirs."}]}, {"h": "When the feeling has no name", "e": [{"s": "Your throat goes tight and you’re looking at the ceiling again.", "g": "Chapter 7, “Two minutes: name one feeling in one word”. One word is enough to start."}, {"s": "There is one thing you have never said to someone, and it keeps coming back.", "g": "Practice, Chapter 7, “One true sentence to one person, then decide”. Write it first. Deciding whether to send it comes second."}, {"s": "A whole week has gone by and nothing good seems to have happened.", "g": "Practice, Chapter 9, “Seven nights: three good things, why, and who you told”. The good parts happened. They slipped past before you wrote them down."}, {"s": "You’re reaching for your phone in the middle of something nice.", "g": "Chapter 9, “One evening: what you noticed instead of the phone”. Stay in the good part a few seconds longer."}]}, {"h": "When you feel alone or watched", "e": [{"s": "You thought of someone and decided a message would be too random.", "g": "Chapter 10, “One minute: send it before you close the book”. People are gladder to hear from you than you expect."}, {"s": "You’re always the one who checks in, and you’re tired of it.", "g": "Practice, Chapter 10, “Three lists of the people around you”. See who holds you up and who wears you out, written down."}, {"s": "You have been the strong one for too long.", "g": "Practice, Chapter 1, “The roles you play, and what helped last time”. You have got through a tired stretch before. Write down what helped."}, {"s": "You have spent the whole evening hiding a stain, a spot or a sentence.", "g": "Chapter 12, “You are lit up more brightly in your own head”. Fewer people noticed than you think."}, {"s": "You’re alone and can’t remember what you like doing.", "g": "Chapter 12, “Ten minutes: phone face down, then write what your hands did”. What your hands reach for is worth writing down."}]}];
+  var tabs=document.querySelector('.tabs'),panel=document.getElementById('finder-panel');
+  function show(i){
+    [].forEach.call(tabs.children,function(b,k){b.setAttribute('aria-selected',k===i?'true':'false');b.tabIndex=k===i?0:-1;});
+    panel.innerHTML='';
+    D[i].e.forEach(function(e){var c=document.createElement('div');c.className='fcard';
+      var s=document.createElement('div');s.className='s';s.textContent=e.s;
+      var g=document.createElement('p');g.className='g';var b=document.createElement('b');b.textContent='Go to: ';g.appendChild(b);g.appendChild(document.createTextNode(e.g));
+      c.appendChild(s);c.appendChild(g);panel.appendChild(c);});
+    panel.setAttribute('aria-labelledby','tab'+i);
+  }
+  D.forEach(function(c,i){var b=document.createElement('button');b.type='button';b.className='tab';b.id='tab'+i;b.setAttribute('role','tab');
+    b.textContent=c.h.replace(/^When /,'');b.textContent=b.textContent.charAt(0).toUpperCase()+b.textContent.slice(1);
+    b.addEventListener('click',function(){show(i);});
+    b.addEventListener('keydown',function(ev){var n=null;if(ev.key==='ArrowRight')n=(i+1)%D.length;if(ev.key==='ArrowLeft')n=(i+D.length-1)%D.length;if(n!==null){show(n);tabs.children[n].focus();ev.preventDefault();}});
+    tabs.appendChild(b);});
+  show(0);
+  var bar=document.getElementById('sticky'),hero=document.querySelector('.hero'),offer=document.getElementById('buy'),closed=false,inHero=true,inOffer=false;
+  try{closed=sessionStorage.getItem('ymn-bar')==='1';}catch(e){}
+  function upd(){var on=!closed&&!inHero&&!inOffer;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',on?'false':'true');[].forEach.call(bar.querySelectorAll('a'),function(a){a.tabIndex=on?0:-1;});}
+  function measure(){var h=hero.getBoundingClientRect(),o=offer.getBoundingClientRect();inHero=h.bottom>80;inOffer=o.top<window.innerHeight*0.85&&o.bottom>0;upd();}
+  window.addEventListener('scroll',measure,{passive:true});
+  window.addEventListener('resize',measure);measure();
+  bar.querySelector('.x').addEventListener('click',function(){closed=true;try{sessionStorage.setItem('ymn-bar','1');}catch(e){}upd();});
+})();
+</script>
 </body>
 </html>
