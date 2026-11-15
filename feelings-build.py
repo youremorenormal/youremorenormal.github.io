@@ -173,3 +173,25 @@ for bad in ("–", "—", " loo "):
         for f in fs:
             assert bad not in open(os.path.join(root, f), encoding="utf8").read(), (bad, f)
 print("feelings pages:", N + 1)
+
+# ---- About the author page (text is the book's own "About the Author") ----
+os.makedirs("about", exist_ok=True)
+ab = open("../rewrite/z-about-the-author.md", encoding="utf8").read().split("\n\n")[1:]
+paras = [E(p.strip(), quote=False).replace("'", "&rsquo;") for p in ab if p.strip()]
+url = BASE + "about/"
+ld = ('{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@type":"Person","name":"Ahsan Raza","url":"' + url +
+      '","description":"Author of You\'re More Normal Than You Think","sameAs":["https://ahsanrazabooks.gumroad.com/"]}}')
+page = head("About the author | You're More Normal Than You Think", "About Ahsan Raza, author of You're More Normal Than You Think, and why he wrote it.", url,
+            f'<script type="application/ld+json">{ld}</script>')
+page = page.replace('href="../../assets', 'href="../assets').replace("<nav", "<nav", 1)
+page += (f'<p class="crumb"><a href="{BASE}">The book</a> / About</p><h1>About the author</h1>' + "".join(f"<p>{p}</p>" for p in paras) +
+         f'<div class="btns"><a class="btn btn1" href="{BUY}&utm_source=site&utm_medium=about" rel="noopener">Get the book, $6.99</a><a class="btn btn2" href="{BASE}read/">Read the first chapter free</a></div>' + FORM + FOOT)
+open("about/index.html", "w", encoding="utf8").write(page)
+sm = open("sitemap.xml", encoding="utf8").read()
+if url not in sm:
+    open("sitemap.xml", "w", encoding="utf8").write(sm.replace("</urlset>", f"<url><loc>{url}</loc><lastmod>2026-11-15</lastmod></url></urlset>"))
+t = open("index.html", encoding="utf8").read()
+if "about/" not in t:
+    t = t.replace('&copy; Ahsan Raza. English (British).</footer>', '&copy; Ahsan Raza. English (British). <a href="about/">About the author</a></footer>', 1)
+    open("index.html", "w", encoding="utf8").write(t)
+print("about ok")
