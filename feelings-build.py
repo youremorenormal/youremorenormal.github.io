@@ -88,7 +88,7 @@ KW = [
 FORM = ('<style>.sub{max-width:720px;margin:44px auto 0;padding:0 20px}.sub label{display:block;font:600 20px/1.3 var(--display,Georgia,serif);margin-bottom:10px}'
         '.sub div{display:flex;gap:8px;flex-wrap:wrap}.sub input[type=email]{flex:1 1 220px;min-height:48px;padding:0 14px;font:inherit;font-size:17px;border:1px solid var(--rule,#ddd2c9);border-radius:10px;background:var(--card,#fffdfa);color:var(--ink,#211a17)}'
         '.sub button{min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--ink,#211a17);color:var(--bg,var(--paper,#f8f4f1));font:600 17px var(--body,system-ui,sans-serif);cursor:pointer}'
-        '.sub small{display:block;margin-top:8px;color:var(--muted,#6b5f58);font-size:15px}.sub input:focus-visible,.sub button:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:2px}</style>'
+        'main .sub{padding:0;max-width:none;margin:44px 0 0}.sub small{display:block;margin-top:8px;color:var(--muted,#6b5f58);font-size:15px}.sub input:focus-visible,.sub button:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:2px}</style>'
         '<form class="sub" action="https://gumroad.com/follow_from_embed_form" method="post"><label for="sub-email">Want an email from the author when there is something new?</label>'
         '<div><input type="hidden" name="seller_id" value="6138345188489"><input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="Your email address"><button type="submit">Follow</button></div>'
         '<small>Sent through Gumroad. You can unsubscribe at any time.</small></form>')
@@ -153,7 +153,7 @@ def head(title, desc, url, extra=""):
 <meta name="author" content="Ahsan Raza"><meta name="theme-color" content="#f8f4f1">
 <link rel="icon" href="../../assets/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48.png"><link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/Newsreader-600.woff2"><link rel="stylesheet" href="../../assets/fonts.css">
-<style>{CSS}nav.wrap{{position:relative}}{MENU_CSS}</style>{extra}</head><body>
+<style>{CSS}nav.wrap{{position:relative;padding:28px 24px 12px;max-width:1120px}}nav.wrap>a:first-child{{font:600 19px/1 var(--body);letter-spacing:-.01em}}{MENU_CSS}</style>{extra}</head><body>
 <nav class="wrap"><a href="{BASE}">Ahsan Raza</a>{tools()}</nav><main class="wrap">"""
 
 def buy(slug):
@@ -251,7 +251,7 @@ if "class=\"shelves\"" not in t:
     t = t.replace("</style>", "@media (prefers-color-scheme:dark){:root:not([data-theme=light]){" + DARK + "color-scheme:dark}:root:not([data-theme=light]) .btn--ink{background:oklch(94% .008 70);color:oklch(19% .01 40)}}:root[data-theme=dark]{" + DARK + "color-scheme:dark}:root[data-theme=dark] .btn--ink{background:oklch(94% .008 70);color:oklch(19% .01 40)}" + "</style>", 1)
     t = t.replace("<head>", "<head>\n<script>try{var t=localStorage.getItem('ymn-theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>", 1)
     t = t.replace('<meta name="author" content="Ahsan Raza">', '<meta name="author" content="Ahsan Raza"><meta name="p:domain_verify" content="8101158ac282d84922c6045962ec95ab"><meta name="keywords" content="self help book, you\'re more normal than you think, worry at night, comparing yourself to others, harsh inner voice, imposter feelings, feeling not normal, ebook, Ahsan Raza"><link rel="alternate" hreflang="en-GB" href="' + BASE + '"><link rel="alternate" hreflang="x-default" href="' + BASE + '"><meta property="og:site_name" content="You\'re More Normal Than You Think"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="675"><meta property="og:image:alt" content="The book You\'re More Normal Than You Think by Ahsan Raza">', 1)
-    t = t.replace("</style>", ".nav{position:relative}footer.wrap{padding-block:52px 60px}" + MENU_CSS + "</style>", 1)
+    t = t.replace("</style>", ".nav{position:relative;padding-block:28px 12px}footer.wrap{padding-block:52px 60px}" + MENU_CSS + "</style>", 1)
     t = t.replace("</body>", MENU_JS + "</body>", 1)
     open("index.html", "w", encoding="utf8").write(t)
 print("about ok")
