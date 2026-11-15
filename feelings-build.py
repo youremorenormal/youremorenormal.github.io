@@ -91,7 +91,7 @@ FORM = ('<style>.sub{max-width:720px;margin:44px auto 0;padding:0 20px}.sub labe
         'main .sub{padding:0;max-width:none;margin:44px 0 0}.sub small{display:block;margin-top:8px;color:var(--muted,#6b5f58);font-size:15px}.sub input:focus-visible,.sub button:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:2px}</style>'
         '<form class="sub" action="https://gumroad.com/follow_from_embed_form" method="post"><label for="sub-email">Want an email from the author when there is something new?</label>'
         '<div><input type="hidden" name="seller_id" value="6138345188489"><input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="Your email address"><button type="submit">Follow</button></div>'
-        '<small>Sent through Gumroad. You can unsubscribe at any time.</small></form>')
+        '<small>You can unsubscribe at any time.</small></form>')
 
 SHELVES = [("A", "Comparing and belonging", (1, 6, 12)), ("B", "Worry and setbacks", (2, 5, 11)),
            ("C", "Feeling and noticing", (4, 7, 9)), ("D", "Doubt and people", (3, 8, 10))]
