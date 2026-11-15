@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://ahsanraza3434.github.io/youre-more-normal/"><meta property="og:image" content="https://ahsanraza3434.github.io/youre-more-normal/assets/social.jpg"><meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="You're More Normal Than You Think"><meta name="twitter:description" content="A self-help ebook by Ahsan Raza about worry, comparing yourself, shame and the harsh voice in your head. Twelve feelings almost everyone has, and what to do about them. Read the start free."><meta name="twitter:image" content="https://ahsanraza3434.github.io/youre-more-normal/assets/social.jpg">
 <meta name="author" content="Ahsan Raza"><meta name="theme-color" content="#f8f4f1"><link rel="icon" href="assets/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png"><link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap" media="print" onload="this.media=&quot;all&quot;"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap"></noscript><link rel="preload" as="image" href="assets/hero.webp" fetchpriority="high">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Book","name":"You're More Normal Than You Think","alternateName":"Twelve feelings almost everyone has, and what to do about them","author":{"@type":"Person","name":"Ahsan Raza"},"inLanguage":"en-GB","description":"A self-help ebook by Ahsan Raza about worry, comparing yourself, shame and the harsh voice in your head. Twelve feelings almost everyone has, and what to do about them. Read the start free.","image":"https://ahsanraza3434.github.io/youre-more-normal/assets/social.jpg","url":"https://ahsanraza3434.github.io/youre-more-normal/","genre":"Self-help","bookFormat":"https://schema.org/EBook","numberOfPages":164,"offers":{"@type":"Offer","price":"6.99","priceCurrency":"USD","availability":"https://schema.org/InStock","url":"https://ahsanrazabooks.gumroad.com/l/sdpapr?wanted=true"}}</script>
 <style>
 :root{
@@ -186,7 +186,7 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
         <a class="link alt" href="#sample">Or read the start for free &darr;</a>
       </div>
     </div>
-    <div class="desk"><img src="assets/hero.webp" alt="The book You're More Normal Than You Think, standing upright, showing its cover and pages"></div>
+    <div class="desk"><img fetchpriority="high" decoding="async" src="assets/hero.webp" alt="The book You're More Normal Than You Think, standing upright, showing its cover and pages"></div>
   </div>
 </div>
 
@@ -368,7 +368,7 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
         <div class="item"><h3>A free printable workbook</h3><p>It comes with the book, as a fillable PDF.</p></div>
       </div>
     </div>
-    <div class="pic"><img src="assets/pair.jpeg" alt="The front and back covers of the book standing side by side"></div>
+    <div class="pic"><img loading="lazy" width="900" height="506" src="assets/pair.jpeg" alt="The front and back covers of the book standing side by side"></div>
   </div>
 </section>
 
@@ -398,7 +398,7 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
 </main>
 
 <footer class="wrap">&copy; Ahsan Raza. English (British).</footer>
-<div class="sticky" id="sticky" role="region" aria-label="Get the book" aria-hidden="true">
+<div class="sticky" id="sticky" role="region" aria-label="Get the book" aria-hidden="true" inert>
   <div class="t">You&rsquo;re more normal than you think<small>$6.99</small></div>
   <a class="free" href="read/">Read free</a>
   <a class="btn" href="https://ahsanrazabooks.gumroad.com/l/sdpapr?wanted=true" rel="noopener" tabindex="-1">Get the book</a>
@@ -425,7 +425,7 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
   show(0);
   var bar=document.getElementById('sticky'),hero=document.querySelector('.hero'),offer=document.getElementById('buy'),closed=false,inHero=true,inOffer=false;
   try{closed=sessionStorage.getItem('ymn-bar')==='1';}catch(e){}
-  function upd(){var on=!closed&&!inHero&&!inOffer;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',on?'false':'true');[].forEach.call(bar.querySelectorAll('a'),function(a){a.tabIndex=on?0:-1;});}
+  function upd(){var on=!closed&&!inHero&&!inOffer;bar.classList.toggle('on',on);bar.setAttribute('aria-hidden',on?'false':'true');bar.inert=!on;}
   function measure(){var h=hero.getBoundingClientRect(),o=offer.getBoundingClientRect();inHero=h.bottom>80;inOffer=o.top<window.innerHeight*0.85&&o.bottom>0;upd();}
   window.addEventListener('scroll',measure,{passive:true});
   window.addEventListener('resize',measure);measure();
