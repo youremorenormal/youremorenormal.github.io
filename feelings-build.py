@@ -71,6 +71,14 @@ P = [
 ]
 N = len(P)
 
+FORM = ('<style>.sub{max-width:720px;margin:44px auto 0;padding:0 20px}.sub label{display:block;font:600 20px/1.3 var(--display,Georgia,serif);margin-bottom:10px}'
+        '.sub div{display:flex;gap:8px;flex-wrap:wrap}.sub input[type=email]{flex:1 1 220px;min-height:48px;padding:0 14px;font:inherit;font-size:17px;border:1px solid var(--rule,#ddd2c9);border-radius:10px;background:var(--card,#fffdfa);color:var(--ink,#211a17)}'
+        '.sub button{min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--ink,#211a17);color:var(--bg,#f8f4f1);font:600 17px var(--body,system-ui,sans-serif);cursor:pointer}'
+        '.sub small{display:block;margin-top:8px;color:var(--muted,#6b5f58);font-size:15px}.sub input:focus-visible,.sub button:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:2px}</style>'
+        '<form class="sub" action="https://gumroad.com/follow_from_embed_form" method="post"><label for="sub-email">Want an email from the author when there is something new?</label>'
+        '<div><input type="hidden" name="seller_id" value="6138345188489"><input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="Your email address"><button type="submit">Follow</button></div>'
+        '<small>Sent through Gumroad. You can unsubscribe at any time.</small></form>')
+
 CSS = """:root{--bg:#f8f4f1;--ink:#211a17;--muted:#6b5f58;--rule:#ddd2c9;--accent:#b4472a;--card:#fffdfa;--display:"Newsreader",Georgia,serif;--body:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif}
 @media (prefers-color-scheme:dark){:root{--bg:#1c1714;--ink:#f1e9e2;--muted:#b3a69d;--rule:#3a312b;--accent:#e0805f;--card:#251f1b}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:400 19px/1.65 var(--body)}
@@ -133,7 +141,7 @@ for i, (slug, ch, h1, feel, covers, ex) in enumerate(P, 1):
 <p>Chapter {i} of <em>You&rsquo;re More Normal Than You Think</em> is called &ldquo;{E(ch)}&rdquo;. It looks at {E(covers)}</p>
 <div class="box"><b>Do this now</b>{E(ex)} Every chapter ends with something small like this, so you finish it in a few minutes.</div>
 <div class="btns"><a class="btn btn1" href="{buy(slug)}" rel="noopener">Get the book, $6.99</a><a class="btn btn2" href="{BASE}read/">Read the first chapter free</a></div>
-{pn}"""
+{pn}""" + FORM
     open(f"{d}/index.html", "w", encoding="utf8").write(head(title, desc, url, extra) + body + FOOT)
 
 # hub
@@ -143,7 +151,7 @@ items = "".join(f'<li><a href="{s}/">{E(h)}</a><span>Chapter {i}: {E(c)}</span><
 hub = head(hub_title, hub_desc, BASE + "feelings/").replace("../../assets", "../assets") + f"""<p class="crumb"><a href="{BASE}">The book</a> / Twelve feelings</p>
 <h1>Twelve feelings almost everyone has</h1><p class="lede">Pick the one that sounds like tonight. Each links to the chapter of the book that deals with it.</p>
 <ol class="list">{items}</ol>
-<div class="btns"><a class="btn btn1" href="{BUY}&utm_source=site&utm_medium=feelings&utm_campaign=hub" rel="noopener">Get the book, $6.99</a><a class="btn btn2" href="{BASE}read/">Read the first chapter free</a></div>""" + FOOT
+<div class="btns"><a class="btn btn1" href="{BUY}&utm_source=site&utm_medium=feelings&utm_campaign=hub" rel="noopener">Get the book, $6.99</a><a class="btn btn2" href="{BASE}read/">Read the first chapter free</a></div>""" + FORM + FOOT
 open("feelings/index.html", "w", encoding="utf8").write(hub)
 
 # sitemap and index links
@@ -157,6 +165,8 @@ for i, (slug, ch, *_r) in enumerate(P, 1):
     li = "<li>" + E(ch, quote=False).replace("'", "&rsquo;") + "</li>"
     assert li in t, li
     t = t.replace(li, f'<li><a href="feelings/{slug}/">{E(ch, quote=False).replace(chr(39), "&rsquo;")}</a></li>', 1)
+if 'follow_from_embed_form' not in t:
+    t = t.replace('<footer class="wrap">', FORM + "\n" + '<footer class="wrap">', 1)
 open("index.html", "w", encoding="utf8").write(t)
 for bad in ("–", "—", " loo "):
     for root, _, fs in os.walk("feelings"):
