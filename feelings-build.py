@@ -2,7 +2,7 @@
 Run by build-site.py at its end. Pages hold short summaries only, never manuscript text."""
 import os, re, html
 
-BASE = "https://youremorenormal.github.io/"
+BASE = "https://youremorenormal.com/"
 BUY = "https://ahsanrazabooks.gumroad.com/l/sdpapr?wanted=true"
 E = html.escape
 
