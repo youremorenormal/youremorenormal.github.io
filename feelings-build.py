@@ -109,7 +109,7 @@ def menu():
         "".join(f'<li><a href="{BASE}feelings/{P[c-1][0]}/"><i>{c:02d}</i><b>{E(P[c-1][1])}</b></a></li>' for c in cs) + "</ol></div>"
         for l, n, cs in SHELVES)
     return ('<details class="shelves"><summary><span>Browse</span><span class="lg">the shelves</span></summary><div class="mega">' + cols +
-            f'<div class="mega-f"><a href="{BASE}read/">Read chapter 1 free</a><a href="{BASE}feelings/">All twelve feelings</a><a href="{BASE}about/">About the author</a></div></div></details>')
+            f'<div class="mega-f"><a href="{BASE}read/">Read chapter 1 free</a><a href="{BASE}feelings/">All twelve feelings</a><a href="{BASE}guides/">Guides</a><a href="{BASE}about/">About the author</a></div></div></details>')
 
 MENU_CSS = """.shelves{position:relative}.shelves summary{list-style:none;cursor:pointer;font:600 16px var(--body,system-ui,sans-serif);padding:8px 6px;color:var(--ink,#211a17);display:inline-flex;gap:5px;align-items:center;user-select:none}
 .shelves summary::-webkit-details-marker{display:none}.shelves summary::after{content:"";width:7px;height:7px;margin-left:3px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg) translateY(-2px)}
@@ -255,3 +255,6 @@ if "class=\"shelves\"" not in t:
     t = t.replace("</body>", MENU_JS + "</body>", 1)
     open("index.html", "w", encoding="utf8").write(t)
 print("about ok")
+
+if os.path.exists("guides-build.py"):
+    exec(open("guides-build.py", encoding="utf8").read())
