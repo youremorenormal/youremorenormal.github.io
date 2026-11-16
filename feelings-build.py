@@ -153,7 +153,7 @@ def head(title, desc, url, extra=""):
 <meta name="author" content="Ahsan Raza"><meta name="theme-color" content="#f8f4f1">
 <link rel="icon" href="../../assets/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="48x48" href="../../assets/favicon-48.png"><link rel="apple-touch-icon" href="../../assets/apple-touch-icon.png">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../assets/fonts/Newsreader-600.woff2"><link rel="stylesheet" href="../../assets/fonts.css">
-<style>{CSS}nav.wrap{{position:relative;padding:28px 24px 12px;max-width:1120px}}nav.wrap>a:first-child{{font:600 19px/1 var(--body);letter-spacing:-.01em}}{MENU_CSS}</style>{extra}</head><body>
+<style>{CSS}nav.wrap{{position:relative;padding:28px 24px 12px;max-width:1120px}}nav.wrap>a:first-child{{font:600 19px/1 var(--body);letter-spacing:-.01em;white-space:nowrap}}{MENU_CSS}</style>{extra}</head><body>
 <nav class="wrap"><a href="{BASE}">Ahsan Raza</a>{tools()}</nav><main class="wrap">"""
 
 def buy(slug):
