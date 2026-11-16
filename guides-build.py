@@ -61,3 +61,17 @@ sm = re.sub(r"<url><loc>[^<]*guides/[^<]*</loc>.*?</url>", "", sm)
 add = "".join(f"<url><loc>{u}</loc><lastmod>2026-11-16</lastmod></url>" for u in [hub_url] + urls_g)
 open("sitemap.xml", "w", encoding="utf8").write(sm.replace("</urlset>", add + "</urlset>"))
 print("guides pages:", len(guides) + 1)
+
+# "Guides on this feeling" block on each chapter page (idempotent)
+for slug_f in titles:
+    fp = f"feelings/{slug_f}/index.html"
+    t = open(fp, encoding="utf8").read()
+    t = re.sub(r'<div class="more-guides">.*?</div>(?=<div class="btns">)', "", t, flags=re.S)
+    rel_g = [g for g in guides if slug_f in g["links"]][:4]
+    if not rel_g:
+        continue
+    blk = '<div class="more-guides"><h2>Guides on this feeling</h2><ol class="list">' + "".join(
+        f'<li><a href="{BASE}guides/{g["slug"]}/">{sm_(g["title"])}</a></li>' for g in rel_g) + "</ol></div>"
+    t = t.replace('<div class="btns">', blk + '<div class="btns">', 1)
+    open(fp, "w", encoding="utf8").write(t)
+print("chapter pages linked to guides")
