@@ -25,6 +25,9 @@ urls_g = []
 for g in guides:
     url = f"{BASE}guides/{g['slug']}/"
     urls_g.append(url)
+    k = guides.index(g)
+    others = [guides[(k + d) % len(guides)] for d in (1, 2, 3, 4) if guides[(k + d) % len(guides)] is not g][:4]
+    more = '<h2>More guides</h2><ol class="list">' + ''.join(f'<li><a href="{BASE}guides/{o["slug"]}/">{sm_(o["title"])}</a></li>' for o in others) + '</ol>' if others else ''
     rel = "".join(f'<li><a href="{BASE}feelings/{s}/">{sm_(titles[s][0])}</a><span>From chapter: {sm_(titles[s][1])}</span></li>' for s in g["links"] if s in titles)
     ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"], "url": url,
                      "inLanguage": "en-GB", "author": {"@type": "Person", "name": "Ahsan Raza"},
@@ -37,11 +40,11 @@ for g in guides:
     extra = f'<script type="application/ld+json">{ld}</script><script type="application/ld+json">{bc}</script>'
     body = f"""<p class="crumb"><a href="{BASE}">The book</a> / <a href="{BASE}guides/">Guides</a> / {sm_(g['title'])}</p>
 <article class="guide">{g['html']}</article>
-<h2>Related pages</h2><ol class="list">{rel}</ol>
+<h2>Related pages</h2><ol class="list">{rel}</ol>{more}
 <div class="btns"><a class="btn btn1" href="{buy(g['slug']).replace('utm_medium=feelings','utm_medium=guides')}" rel="noopener">Get the book, $6.99</a><a class="btn btn2" href="{BASE}read/">Read the first chapter free</a></div>""" + FORM
     d = f"guides/{g['slug']}"
     os.makedirs(d, exist_ok=True)
-    open(f"{d}/index.html", "w", encoding="utf8").write(head(g["title"] + " | You're More Normal Than You Think", g["desc"], url, extra) + body + FOOT)
+    open(f"{d}/index.html", "w", encoding="utf8").write(head(g["title"], g["desc"], url, extra) + body + FOOT)
 
 hub_url = BASE + "guides/"
 items = "".join(f'<li><a href="{g["slug"]}/">{sm_(g["title"])}</a><span>{sm_(g["desc"])}</span></li>' for g in guides)
