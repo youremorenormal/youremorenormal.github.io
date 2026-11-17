@@ -19,7 +19,7 @@ button:hover,select:hover{border-color:var(--ink)}button[aria-pressed=true]{back
 main{flex:1;min-height:0;display:flex;align-items:stretch;justify-content:center;gap:6px;padding:14px 8px}
 .nav{align-self:center;width:44px;height:44px;padding:0;font-size:22px;line-height:1;flex:none}
 #wrap{flex:1;max-width:760px;min-width:0;background:var(--card);border:1px solid var(--rule);border-radius:14px;box-shadow:0 20px 44px -30px rgba(0,0,0,.5);overflow:hidden;position:relative}
-#viewer{position:absolute;inset:0}#msg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);padding:24px;text-align:center}
+#viewer{position:absolute;inset:0}#msg{position:absolute;inset:0;color:var(--muted);padding:30vh 24px 0;text-align:center;line-height:1.8}
 footer{padding:8px 16px 14px;text-align:center;color:var(--muted);font-size:14px}footer a{color:inherit}
 @media (max-width:640px){main{padding:8px 4px}.nav{display:none}#wrap{border-radius:10px}header{padding:8px 10px}}
 </style></head><body>
@@ -32,7 +32,7 @@ footer{padding:8px 16px 14px;text-align:center;color:var(--muted);font-size:14px
 <footer>Free sample: the introduction and Chapter 1. Use the arrow keys or swipe to turn pages. <a href="../../sample/Youre-More-Normal-Than-You-Think-free-sample.epub" download>Download the EPUB</a> &middot; <a href="../../sample/Youre-More-Normal-Than-You-Think-free-sample.pdf">PDF</a></footer>
 <noscript><p style="padding:20px">This reader needs JavaScript. <a href="../../sample/Youre-More-Normal-Than-You-Think-free-sample.epub" download>Download the EPUB</a> or <a href="../">read it on the page</a>.</p></noscript>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/epub.js/0.3.93/epub.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js"></script>
 <script>
 (function(){
 var R=document.documentElement,size=100,theme="light",rend,msg=document.getElementById("msg");
