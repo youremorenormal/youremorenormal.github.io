@@ -21,7 +21,7 @@ main{flex:1;min-height:0;display:flex;align-items:stretch;justify-content:center
 #wrap{flex:1;max-width:760px;min-width:0;background:var(--card);border:1px solid var(--rule);border-radius:14px;box-shadow:0 20px 44px -30px rgba(0,0,0,.5);overflow:hidden;position:relative}
 #viewer{position:absolute;inset:0}#msg{position:absolute;inset:0;color:var(--muted);padding:30vh 24px 0;text-align:center;line-height:1.8}
 footer{padding:8px 16px 14px;text-align:center;color:var(--muted);font-size:14px}footer a{color:inherit}
-@media (max-width:640px){main{padding:8px 4px}.nav{display:none}#wrap{border-radius:10px}header{padding:8px 10px;gap:6px}header a.back{flex:1 1 100%}#toc{flex:1 1 100%;order:1}select,button,.buy{padding:7px 11px;font-size:13px}.buy{margin-left:auto}}
+@media (max-width:640px){main{padding:8px 4px}.nav{display:none}#wrap{border-radius:10px}header{padding:8px 10px;gap:6px}header a.back{flex:1 1 auto}#toc{flex:1 1 100%;order:1}header button{order:2}select,button,.buy{padding:7px 11px;font-size:13px}.buy{order:0}}
 </style></head><body>
 <header><a class="back" href="../">&larr; Back to reading page</a>
 <select id="toc" aria-label="Contents"><option>Contents</option></select>
