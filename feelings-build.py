@@ -144,7 +144,7 @@ p{margin:0 0 16px}.lede{font-size:21px}
 .pn{display:flex;justify-content:space-between;gap:16px;border-top:1px solid var(--rule);padding-top:20px;margin-top:36px;font-size:16px}
 .pn a{color:var(--ink)}a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 ol.list{padding-left:1.2em}ol.list li{margin:0 0 12px}ol.list a{color:var(--ink);font-weight:600}ol.list span{display:block;color:var(--muted);font-size:16px;font-weight:400}
-footer{color:var(--muted);font-size:15px;padding:40px 0}"""
+footer{color:var(--muted);font-size:15px;padding:40px 0}footer a{color:inherit}"""
 
 def head(title, desc, url, extra=""):
     return f"""<!doctype html><html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -159,7 +159,7 @@ def head(title, desc, url, extra=""):
 def buy(slug):
     return BUY + f"&utm_source=site&utm_medium=feelings&utm_campaign={slug}"
 
-FOOT = f"""</main><footer class="wrap">&copy; Ahsan Raza. English (British).</footer>{MENU_JS}</body></html>"""
+FOOT = f"""</main><footer class="wrap">&copy; Ahsan Raza. English (British). <a href="{BASE}about/">About the author</a> &middot; <a href="{BASE}press/">For reviewers and podcast hosts</a></footer>{MENU_JS}</body></html>"""
 os.makedirs("feelings", exist_ok=True)
 urls = [BASE + "feelings/"]
 
@@ -232,7 +232,7 @@ ld = ('{"@context":"https://schema.org","@type":"ProfilePage","mainEntity":{"@ty
 page = head("About the author | You're More Normal Than You Think", "About Ahsan Raza, author of You're More Normal Than You Think, and why he wrote it.", url,
             f'<script type="application/ld+json">{ld}</script>')
 page = page.replace('href="../../assets', 'href="../assets').replace("<nav", "<nav", 1)
-page += (f'<p class="crumb"><a href="{BASE}">The book</a> / About</p><h1>About the author</h1>' + "".join(f"<p>{p}</p>" for p in paras) +
+page += (f'<p class="crumb"><a href="{BASE}">The book</a> / About</p><h1>About the author</h1>' + "".join(f"<p>{p}</p>" for p in paras) + f'<p>Reviewing the book or hosting a podcast? <a href="{BASE}press/">There is a page for reviewers and podcast hosts</a>.</p>' +
          f'<div class="btns"><a class="btn btn1" href="{BUY}&utm_source=site&utm_medium=about" rel="noopener">Get the book, $6.99</a><a class="btn btn2" href="{BASE}read/">Read the first chapter free</a></div>' + FORM + FOOT)
 open("about/index.html", "w", encoding="utf8").write(page)
 sm = open("sitemap.xml", encoding="utf8").read()
@@ -240,7 +240,7 @@ if url not in sm:
     open("sitemap.xml", "w", encoding="utf8").write(sm.replace("</urlset>", f"<url><loc>{url}</loc><lastmod>2026-11-15</lastmod></url></urlset>"))
 t = open("index.html", encoding="utf8").read()
 if "about/" not in t:
-    t = t.replace('&copy; Ahsan Raza. English (British).</footer>', '&copy; Ahsan Raza. English (British). <a href="about/">About the author</a></footer>', 1)
+    t = t.replace('&copy; Ahsan Raza. English (British).</footer>', '&copy; Ahsan Raza. English (British). <a href="about/">About the author</a> &middot; <a href="press/">For reviewers and podcast hosts</a></footer>', 1)
     open("index.html", "w", encoding="utf8").write(t)
 # ---- shelves menu on the home page ----
 t = open("index.html", encoding="utf8").read()
@@ -256,5 +256,6 @@ if "class=\"shelves\"" not in t:
     open("index.html", "w", encoding="utf8").write(t)
 print("about ok")
 
+exec(open("press-build.py", encoding="utf8").read())
 if os.path.exists("guides-build.py"):
     exec(open("guides-build.py", encoding="utf8").read())

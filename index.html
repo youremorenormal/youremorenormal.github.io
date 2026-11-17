@@ -158,7 +158,8 @@ footer{padding-block:32px 48px;font-size:15px;color:var(--muted)}
 /* header never wraps on phones: logo and button stay on one line, the button hides on very narrow screens */
 .mark,.nav .btn{white-space:nowrap}
 @media (max-width:430px){.mark{font-size:18px}.nav .btn--sm{padding-inline:12px;font-size:14px}.nav-r,.tools{gap:6px}}
-@media (max-width:350px){.nav .btn--sm{display:none}}
+@media (max-width:430px){header.nav.wrap{padding-inline:16px}.nav .tools{gap:4px}.nav .shelves summary{padding-inline:2px}.nav .theme-toggle{width:38px;height:38px}}
+@media (max-width:365px){.nav .btn--sm{display:none}}
 /* even rhythm: 84px between any two sections, whether or not a coloured band sits between them */
 .hero+section{padding-top:28px!important}.how+section,.author+section,.board+section{padding-top:84px!important}
 section:not(.how):not(.board):not(.author)+section:not(.how):not(.board):not(.author){padding-top:0!important}
@@ -252,7 +253,7 @@ footer.wrap{padding:52px 20px 60px}
       </div>
       <p class="small">No sign-up. No checkout.</p>
     </div>
-    <div class="reader" tabindex="0" role="region" aria-label="Free sample: the introduction and Chapter 1"><h2 class="rh1">Introduction</h2>
+    <div class="reader" tabindex="0" role="region" aria-label="Free sample: the introduction and Chapter 1"><h1 id="h-introduction">Introduction</h2>
 <h2>Read this first</h2>
 <p>When I was young, I was sure I wasn&#8217;t normal.</p>
 <p>I didn&#8217;t mean it as a boast. It felt more like a diagnosis. Other people seemed to get through their days in some ordinary way, and I seemed to be running a different, stranger machine. What I went through, how I handled my feelings, how I reacted to things: nobody else did that. So I couldn&#8217;t ask for help, because I couldn&#8217;t think how to explain it. Who would understand a problem that only one person had?</p>
@@ -266,7 +267,7 @@ footer.wrap{padding:52px 20px 60px}
 <p>It&#8217;s also for you if you keep things to yourself. If you read more than you talk. If you&#8217;ve wanted to say how you really feel and haven&#8217;t found anyone you trust enough to say it to. Think of these pages as that conversation, with one difference. The friend speaking is the clearest-headed version of you, not tired or comparing, the one who already knows most of this and only needs it said out loud.</p>
 <h2>How to use this book</h2>
 <p>Each chapter ends with a short exercise and four lines to carry into the evening. Longer writing pages and three running lists live at the back of the book; the chapters will send you there when it&#8217;s time. You don&#8217;t have to read it in order. Start where it hurts.</p>
-<blockquote>
+<blockquote class="box">
 <p><strong>For the heavy nights</strong></p>
 <p>Some nights are heavier than usual. That says nothing bad about you, and a few small things can lower the weight before morning.</p>
 <p>Breathe in through your nose, then take a second short sip of air on top. Let it out slowly through your mouth. Do that for up to five minutes, and stop and breathe normally if you feel dizzy. A long out-breath helps the body settle.</p>
@@ -276,18 +277,18 @@ footer.wrap{padding:52px 20px 60px}
 <p>Don&#8217;t decide anything big tonight. Heavy nights end.</p>
 </blockquote>
 <p>One promise: nothing in here asks you to become someone else.</p>
-<p>Ahsan Raza</p><hr><p class="chno">Chapter 1</p>
+<p>Ahsan Raza</p><hr><p class="chno">Chapter 1</p>
 
-<h2 class="rh1">Why It&#8217;s Normal to Feel Not Normal</h2>
+<h1 id="h-whyitsnormaltofeelnotnormal">Why It&#8217;s Normal to Feel Not Normal</h2>
 <blockquote>
 <p>&#8220;I am a man, and feel for all mankind.&#8221;</p>
-<p>Terence, <em>The Self-Tormentor</em>, Act 1, Scene 1 (translated by George Colman, 1768)</p>
+<p>Terence, <em>The Self-Tormentor</em>, Act 1, Scene 1, translated by George Colman (1768)</p>
 </blockquote>
 <p>You know the feeling. Everyone else seems to have been handed the instructions, and you were out of the room when they went round. Other people look calmer and further along, and you&#8217;re the one keeping up appearances. It turns up in a crowded room, or at 1 a.m. when you should be asleep and are reading the reviews of a toaster you don&#8217;t need, and it rarely has a reason you could point to.</p>
 <p>You&#8217;re at a family dinner, or the office on a Monday. Someone asks how you are. &#8220;Good, busy,&#8221; you say, and you smile at about the right moment. On the drive home one thing you said comes back, and you replay it past the garage and the roundabout and most of the way down your own road, because you weren&#8217;t really there for any of it, you were doing an impression of yourself.</p>
 <p>Later, in bed, a quiet question. What is wrong with me?</p>
 <p>Probably nothing.</p>
-<h2>Two versions of you</h2>
+<h2 id="c1-twoversionsofyou">Two versions of you</h2>
 <p>Most of us live as two people. There&#8217;s the one people see: the reliable colleague, the son or daughter who never worries anyone, the friend who&#8217;s always up for it. And there&#8217;s the one who only comes out when the door&#8217;s shut, still in work clothes on the edge of the bed, scrolling without reading, a bit lost, sometimes sad without being able to say why.</p>
 <p>The first version isn&#8217;t fake. It&#8217;s how anyone gets through the day. You can&#8217;t tell your manager, your in-laws and the man at the corner shop exactly how you feel every time they ask. Playing a role is partly good manners and partly survival. It starts early. Somewhere around the school gate you work out which bits of you get a smile, and you show more of those.</p>
 <p>The trouble starts when the gap between the two gets wide. You spend so long being the one who&#8217;s fine that you start believing everyone else really is fine, and you&#8217;re the only one pretending. You&#8217;re holding your inside, all of it, the whole messy drawer, up against everyone else&#8217;s outside, which is all you ever get to see.</p>
@@ -302,14 +303,14 @@ footer.wrap{padding:52px 20px 60px}
 <p>And the hiding takes the very thing you wanted. If nobody ever sees the second version, nobody can comfort it. The friend who would have said &#8220;me too&#8221; never gets the chance. So you go on believing you&#8217;re the only one, partly because you made sure nobody could tell you otherwise.</p>
 <p>This doesn&#8217;t mean telling everyone everything. Some people haven&#8217;t earned your full story, and your cousin&#8217;s new boyfriend is one of them. But it helps to know which bits are the role and which bits are you, and to have one person, or even one page, where the second version is allowed out.</p>
 <p>A book can be one of those places.</p>
-<h2>Everyone is doing the maths</h2>
+<h2 id="c1-everyoneisdoingthemaths">Everyone is doing the maths</h2>
 <p>None of this is a personal flaw. People are built this way.</p>
 <p>When there&#8217;s no clear way to measure ourselves, we look at other people. The psychologist Leon Festinger set this out in 1954, in a paper called &#8220;A Theory of Social Comparison Processes&#8221; in the journal <em>Human Relations</em>. Am I doing all right? Further along than her, behind him? There isn&#8217;t a ruler for that, so we glance round the room.</p>
 <p>So what are we glancing at? In 2012, Hui-Tzu Grace Chou and Nicholas Edge surveyed 425 university students and published the results in <em>Cyberpsychology, Behavior, and Social Networking</em>. The students who had used Facebook for longer, and spent more hours on it each week, were more likely to agree that other people were happier and had better lives than them. So were students whose friend lists included lots of people they didn&#8217;t know in real life. Online, people post the wedding and the new job. They don&#8217;t post the row in the car on the way to the wedding.</p>
 <p>In 2011, a team led by Alexander Jordan, then at Stanford, published four studies in <em>Personality and Social Psychology Bulletin</em> with a title that does the work for you: &#8220;Misery Has More Company Than People Think.&#8221; People underestimated how often others feel bad. They saw their own negative feelings as more private than their good ones. And the people who underestimated other people&#8217;s bad feelings tended to feel lonelier and to brood more, while those who overestimated other people&#8217;s good times tended to be less satisfied with their own lives.</p>
 <p>We hold our full story up against everyone else&#8217;s edited one. You aren&#8217;t the only one. Yours is just the only inside you can see.</p>
 <p>So what do you do with this? Stopping comparing isn&#8217;t on the menu. People compare; it comes with having eyes. What you can do is make the comparison fair. Each time a post makes you feel behind, put back the bit it left out. And when you can, spend the time with people in person, where the cracks show and the dishes pile up in the sink like yours.</p>
-<h2>Four people, one Tuesday</h2>
+<h2 id="c1-fourpeopleonetuesday">Four people, one Tuesday</h2>
 <p>Priya sat in her car outside the school gate with the engine off. The other parents were already standing in their usual clumps, and one of the dads was doing an impression of somebody. She found a raisin in her hair from breakfast, picked it out, looked at it, and didn&#8217;t get out until the bell rang, so she could walk straight past them to the door without having to chat.</p>
 <p>Tomas was at his brother&#8217;s flat for dinner. His brother had just been promoted, and their mother kept saying so, to the table and then to the neighbour who popped in to borrow a pan and stayed for twenty minutes. Tomas said &#8220;that&#8217;s brilliant, really&#8221; three times and once, by accident, &#8220;that&#8217;s really brilliant&#8221;. On the night bus home a man behind him was eating chips, and Tomas didn&#8217;t open the group chat when it buzzed.</p>
 <p>Aiko worked the early shift at a pharmacy. At 6 a.m., counting the float into the till, she found a message from an old university friend. A photo of a new house, keys held up to the camera. She typed &#8220;so happy for you!!&#8221; and deleted it, then typed it again with one exclamation mark and sent it. A man was already tapping on the glass because his watch said six and the sign said six.</p>
@@ -319,7 +320,7 @@ footer.wrap{padding:52px 20px 60px}
 <p>Now turn it round to you. Who in your life looks as if they&#8217;ve got it all worked out? And who would say &#8220;me too&#8221; if you gave them half a chance? Put a face to both.</p>
 <p>Do something with that now, while it&#8217;s fresh. Feelings like this stay large while they live only in your head. On a page, they stop growing, and a pattern you can see starts to look less like a flaw and more like a habit.</p>
 <p>If now isn&#8217;t the time, mark this page and come back.</p>
-<h2>Two minutes: one post, and what it leaves out</h2>
+<h2 id="c1-twominutesonepostandwhatitleavesout">Two minutes: one post, and what it leaves out</h2>
 <p><em>Do this now, 2 minutes.</em> Set a timer for two minutes.</p>
 <ol>
 <li>Open the app you scroll most. Find a post from the person you thought of, or the first one that gives you that drop in your stomach. A holiday, a promotion, an engagement, a new flat. Take a screenshot.</li>
@@ -330,15 +331,15 @@ footer.wrap{padding:52px 20px 60px}
 <p>Nobody&#8217;s asking you to cheer yourself up by imagining their life is secretly awful. Just make the comparison fair.</p>
 
 
-<h2>Carry this</h2>
+<h2 id="c1-carrythis">Carry this</h2>
 <ul>
 <li>Tonight, tell one person one true thing about your day that the role usually covers.</li>
 <li>The line to remember: you&#8217;re comparing your inside to their outside.</li>
 <li>Write one thing that helped you, or one thing you got through, on the <strong>Proof list</strong> at the back.</li>
-<li>The full page for this, the roles you play and what helped last time, is in the Practice section at the back, under Chapter 1.</li>
+<li>The full page for this, the roles you play and what helped last time, is in the Practice section at the back, under Chapter 1.</li>
 </ul>
 <p>Somewhere today, someone looked at you and saw the calm version of you.</p>
-<h2>Next up</h2>
+<h2 id="c1-nextup">Next up</h2>
 <p>There&#8217;s a question this chapter left open. If nothing is actually wrong, why does your mind keep running the worst version anyway, the awkward thing you said, the message nobody has answered since Thursday?</p></div>
   </div>
 </section>
@@ -415,7 +416,7 @@ footer.wrap{padding:52px 20px 60px}
 </main>
 
 <style>.sub{max-width:720px;margin:44px auto 0;padding:0 20px}.sub label{display:block;font:600 20px/1.3 var(--display,Georgia,serif);margin-bottom:10px}.sub div{display:flex;gap:8px;flex-wrap:wrap}.sub input[type=email]{flex:1 1 220px;min-height:48px;padding:0 14px;font:inherit;font-size:17px;border:1px solid var(--rule,#ddd2c9);border-radius:10px;background:var(--card,#fffdfa);color:var(--ink,#211a17)}.sub button{min-height:48px;padding:0 22px;border-radius:10px;border:0;background:var(--ink,#211a17);color:var(--bg,var(--paper,#f8f4f1));font:600 17px var(--body,system-ui,sans-serif);cursor:pointer}main .sub{padding:0;max-width:none;margin:44px 0 0}.sub small{display:block;margin-top:8px;color:var(--muted,#6b5f58);font-size:15px}.sub input:focus-visible,.sub button:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:2px}</style><form class="sub" action="https://gumroad.com/follow_from_embed_form" method="post"><label for="sub-email">Want an email from the author when there is something new?</label><div><input type="hidden" name="seller_id" value="6138345188489"><input id="sub-email" type="email" name="email" required autocomplete="email" placeholder="Your email address"><button type="submit">Follow</button></div><small>You can unsubscribe at any time.</small></form>
-<footer class="wrap">&copy; Ahsan Raza. English (British). <a href="about/">About the author</a></footer>
+<footer class="wrap">&copy; Ahsan Raza. English (British). <a href="about/">About the author</a> &middot; <a href="press/">For reviewers and podcast hosts</a></footer>
 <div class="sticky" id="sticky" role="region" aria-label="Get the book" aria-hidden="true" inert>
   <div class="t">You&rsquo;re more normal than you think<small>$6.99</small></div>
   <a class="free" href="read/">Read free</a>
