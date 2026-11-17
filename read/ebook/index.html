@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free sample ebook reader | Ahsan Raza</title>
+<meta name="description" content="Read the free sample of You're More Normal Than You Think in an ebook reader: the introduction and all of Chapter 1.">
+<link rel="canonical" href="https://youremorenormal.com/read/ebook/"><meta name="robots" content="index,follow">
+<meta name="theme-color" content="#f8f4f1">
+<link rel="icon" href="../../assets/favicon.ico" sizes="any"><link rel="stylesheet" href="../../assets/fonts.css">
+<style>
+:root{--paper:#f8f4f1;--card:#fffdfa;--ink:#211a17;--muted:#6b5f58;--rule:#ddd2c9;--accent:#b4472a;color-scheme:light}
+:root[data-t=sepia]{--paper:#efe4cf;--card:#f6ecd8;--ink:#3b2f22;--muted:#74634e;--rule:#d8c8a8}
+:root[data-t=night]{--paper:#1b1715;--card:#26201d;--ink:#efe8e1;--muted:#b3a79d;--rule:#3a322d;--accent:#e08a6b;color-scheme:dark}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{display:flex;flex-direction:column;background:var(--paper);color:var(--ink);font:16px/1.4 'Hanken Grotesk',system-ui,sans-serif}
+header{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--rule);flex-wrap:wrap}
+header a.back{color:var(--ink);text-decoration:none;font-weight:600;margin-right:auto}header a.back:hover{text-decoration:underline}
+select,button,.buy{font:600 14px 'Hanken Grotesk',system-ui,sans-serif;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:8px 14px;cursor:pointer;text-decoration:none}
+button:hover,select:hover{border-color:var(--ink)}button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.buy{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+main{flex:1;min-height:0;display:flex;align-items:stretch;justify-content:center;gap:6px;padding:14px 8px}
+.nav{align-self:center;width:44px;height:44px;padding:0;font-size:22px;line-height:1;flex:none}
+#wrap{flex:1;max-width:760px;min-width:0;background:var(--card);border:1px solid var(--rule);border-radius:14px;box-shadow:0 20px 44px -30px rgba(0,0,0,.5);overflow:hidden;position:relative}
+#viewer{position:absolute;inset:0}#msg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);padding:24px;text-align:center}
+footer{padding:8px 16px 14px;text-align:center;color:var(--muted);font-size:14px}footer a{color:inherit}
+@media (max-width:640px){main{padding:8px 4px}.nav{display:none}#wrap{border-radius:10px}header{padding:8px 10px}}
+</style></head><body>
+<header><a class="back" href="../">&larr; Back to reading page</a>
+<select id="toc" aria-label="Contents"><option>Contents</option></select>
+<button id="sm" aria-label="Smaller text">A&minus;</button><button id="lg" aria-label="Larger text">A+</button>
+<button data-t="light" aria-pressed="true">Light</button><button data-t="sepia" aria-pressed="false">Sepia</button><button data-t="night" aria-pressed="false">Night</button>
+<a class="buy" href="https://ahsanrazabooks.gumroad.com/l/sdpapr?wanted=true&amp;utm_source=site&amp;utm_medium=ebook-reader" rel="noopener">Get the book</a></header>
+<main><button class="nav" id="prev" aria-label="Previous page">&lsaquo;</button><div id="wrap"><div id="viewer"></div><div id="msg">Opening the ebook&hellip;</div></div><button class="nav" id="next" aria-label="Next page">&rsaquo;</button></main>
+<footer>Free sample: the introduction and Chapter 1. Use the arrow keys or swipe to turn pages. <a href="../../sample/Youre-More-Normal-Than-You-Think-free-sample.epub" download>Download the EPUB</a> &middot; <a href="../../sample/Youre-More-Normal-Than-You-Think-free-sample.pdf">PDF</a></footer>
+<noscript><p style="padding:20px">This reader needs JavaScript. <a href="../../sample/Youre-More-Normal-Than-You-Think-free-sample.epub" download>Download the EPUB</a> or <a href="../">read it on the page</a>.</p></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/epub.js/0.3.93/epub.min.js"></script>
+<script>
+(function(){
+var R=document.documentElement,size=100,theme="light",rend,msg=document.getElementById("msg");
+try{theme=localStorage.getItem("ebook-t")||(matchMedia("(prefers-color-scheme:dark)").matches?"night":"light");size=+localStorage.getItem("ebook-s")||100}catch(e){}
+var PAL={light:["#fffdfa","#211a17"],sepia:["#f6ecd8","#3b2f22"],night:["#26201d","#e9e1d9"]};
+function paint(){R.dataset.t=theme;
+ document.querySelector("meta[name=theme-color]").content=getComputedStyle(R).getPropertyValue("--paper").trim()||"#f8f4f1";
+ document.querySelectorAll("button[data-t]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.t==theme)});
+ if(rend){var p=PAL[theme];rend.themes.override("color",p[1]);rend.themes.override("background",p[0]);rend.themes.fontSize(size+"%")}}
+if(typeof ePub==="undefined"){msg.innerHTML='The reader could not load. <a href="../../sample/Youre-More-Normal-Than-You-Think-free-sample.epub" download>Download the EPUB</a> or <a href="../">read it on the page</a>.';paint();return}
+var book=ePub("../../sample/Youre-More-Normal-Than-You-Think-free-sample.epub");
+rend=book.renderTo("viewer",{width:"100%",height:"100%",flow:"paginated",spread:"none"});
+rend.themes.default({"body":{"font-family":"Georgia,'Times New Roman',serif !important","line-height":"1.6 !important","padding":"0 6px !important"},"img":{"max-width":"100% !important"}});
+book.loaded.navigation.then(function(nav){
+ var sel=document.getElementById("toc");sel.innerHTML='<option value="">Contents</option>';
+ nav.toc.forEach(function(t){var o=document.createElement("option");o.value=t.href;o.textContent=t.label.trim();sel.appendChild(o)});
+ sel.onchange=function(){if(sel.value)rend.display(sel.value)}});
+rend.display().then(function(){msg.style.display="none";paint()}).catch(function(){msg.innerHTML='Could not open the ebook. <a href="../../sample/Youre-More-Normal-Than-You-Think-free-sample.epub" download>Download the EPUB</a>.'});
+function nx(){rend.next()}function pv(){rend.prev()}
+document.getElementById("next").onclick=nx;document.getElementById("prev").onclick=pv;
+document.addEventListener("keyup",function(e){if(e.key=="ArrowRight")nx();if(e.key=="ArrowLeft")pv()});
+rend.on("keyup",function(e){if(e.key=="ArrowRight")nx();if(e.key=="ArrowLeft")pv()});
+var x0=null;rend.on("touchstart",function(e){x0=e.changedTouches[0].screenX});rend.on("touchend",function(e){if(x0==null)return;var d=e.changedTouches[0].screenX-x0;if(Math.abs(d)>50)(d<0?nx:pv)();x0=null});
+document.getElementById("sm").onclick=function(){size=Math.max(80,size-10);try{localStorage.setItem("ebook-s",size)}catch(e){}paint()};
+document.getElementById("lg").onclick=function(){size=Math.min(180,size+10);try{localStorage.setItem("ebook-s",size)}catch(e){}paint()};
+document.querySelectorAll("button[data-t]").forEach(function(b){b.onclick=function(){theme=b.dataset.t;try{localStorage.setItem("ebook-t",theme)}catch(e){}paint()}});
+paint();
+})();
+</script></body></html>
