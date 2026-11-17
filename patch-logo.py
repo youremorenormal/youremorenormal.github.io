@@ -7,7 +7,7 @@ LOGO_INNER = SVG + '<span class="logo-word">More Normal</span>'
 CSS = ('<style id="logo-css">.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink,#211a17);white-space:nowrap;line-height:1}'
        '.logo-mark{flex:none;display:block}.logo-word{font:600 21px/1 var(--display,Georgia,serif);letter-spacing:-.012em;position:relative;top:1px}'
        '.logo:hover .logo-word{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}'
-       '.logo:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:4px;border-radius:6px}@media (max-width:460px){.logo-word{display:none}.logo-mark{width:32px;height:32px}.nav-r{gap:12px!important}.tools{gap:8px!important}.shelves summary{padding:8px 4px!important}}</style>')
+       '.logo:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:4px;border-radius:6px}@media (max-width:460px){.logo-word{display:none}.logo-mark{width:32px;height:32px}.nav-r{gap:12px!important}.tools{gap:8px!important}.shelves summary{padding:8px 4px!important}header.nav{padding-left:24px!important;padding-right:24px!important}.hero{padding-top:22px!important}}</style>')
 ARIA = ' aria-label="You\'re More Normal Than You Think, home"'
 pats = [(r'<a class="mark" href="#top">Ahsan Raza</a>', f'<a class="mark logo" href="#top"{ARIA}>{LOGO_INNER}</a>'),
         (r'(<nav class="wrap">)<a href="(https://youremorenormal\.com/)">Ahsan Raza</a>', rf'\1<a class="logo" href="\2"{ARIA}>{LOGO_INNER}</a>')]
