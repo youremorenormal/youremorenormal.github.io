@@ -35,8 +35,8 @@ footer{padding:8px 16px 14px;text-align:center;color:var(--muted);font-size:14px
 <script src="https://cdn.jsdelivr.net/npm/epubjs@0.3.93/dist/epub.min.js"></script>
 <script>
 (function(){
-var R=document.documentElement,size=100,theme="light",rend,msg=document.getElementById("msg");
-try{theme=localStorage.getItem("ebook-t")||(matchMedia("(prefers-color-scheme:dark)").matches?"night":"light");size=+localStorage.getItem("ebook-s")||100}catch(e){}
+var R=document.documentElement,size=115,theme="light",rend,msg=document.getElementById("msg");
+try{theme=localStorage.getItem("ebook-t")||(matchMedia("(prefers-color-scheme:dark)").matches?"night":"light");size=+localStorage.getItem("ebook-s")||115}catch(e){}
 var PAL={light:["#fffdfa","#211a17"],sepia:["#f6ecd8","#3b2f22"],night:["#26201d","#e9e1d9"]};
 function paint(){R.dataset.t=theme;
  document.querySelector("meta[name=theme-color]").content=getComputedStyle(R).getPropertyValue("--paper").trim()||"#f8f4f1";
