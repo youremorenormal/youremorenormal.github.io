@@ -9,7 +9,7 @@ def edit(path, fn):
     if t != s: open(path, "w", encoding="utf8").write(t); print("patched", path)
 
 def home(s):
-    if 'id="signup"' in s: return s
+    s = re.sub(r'<section class="signup" id="signup">.*?</section>', "", s, count=1, flags=re.S)  # re-placed below on every run
     if "universal.js" not in s: s = s.replace("</head>", UNI + "</head>", 1)
     # drop the earlier in-section form (it stretched the sample section)
     s = re.sub(r'\s*(?:<h3 style="margin:28px 0 8px;font-size:20px">[^<]*</h3>|<div style="height:22px"></div>)\s*<div class="ml-embedded" data-form="j1marl"></div>\s*<p class="small">Email goes through MailerLite\. <a href="privacy/">Privacy note</a>\.</p>', "", s, count=1)
@@ -17,8 +17,9 @@ def home(s):
             '<h2 style="margin-top:14px">Get new guides by email</h2>'
             '<p class="lead">A short note when a new guide is published, or when the paperback is out. Nothing else, and you can leave at any time.</p>'
             '</div>' + FORM + '<p class="small">Email goes through MailerLite. <a href="privacy/">Privacy note</a>.</p></div></div></section>')
-    k = s.index('<section class="sample"'); e = s.index("</section>", k) + len("</section>")
-    return s[:e] + band + s[e:]
+    k = s.index('<footer class="wrap">')  # closing slot: after the offer section, before the footer
+    return s[:k] + band + "
+" + s[k:]
 def read(s):
     if "universal.js" not in s: s = s.replace("</head>", UNI + "</head>", 1)
     blk = ('<section class="rd-signup" id="signup"><div><h2>Want more like this?</h2>'
