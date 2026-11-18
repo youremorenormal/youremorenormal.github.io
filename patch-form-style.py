@@ -37,8 +37,17 @@ html body .ml-embedded input.form-control:not(#a):not(#b){background:var(--paper
 html body .rd-signup .ml-embedded input.form-control:not(#a):not(#b){background:var(--bg)!important}
 html body .rd-signup .ml-embedded .label-description p:not(#a):not(#b),html body .rd-signup .ml-embedded .label-description:not(#a):not(#b){color:var(--muted)!important}
 html body .ml-embedded .label-description p:not(#a):not(#b),html body .ml-embedded .label-description:not(#a):not(#b),html body .ml-embedded .ml-form-checkboxRow label:not(#a):not(#b){color:var(--muted,#6b5f58)!important}
+section.g-signup{--paper:var(--bg,#f8f4f1);--rule-2:var(--rule,#ddd2c9);display:block;margin:48px 0 0;padding:34px 30px;text-align:center;background:var(--card,#fffdfa);border:1px solid var(--rule,#ddd2c9);border-radius:14px}
+.g-signup h2{margin:0 0 10px;font:600 26px/1.15 var(--display,Georgia,serif);color:var(--ink,#211a17)}
+.g-signup>p{margin:0 auto 22px;max-width:44ch;color:var(--ink,#211a17);font-size:17px;line-height:1.55}
+.g-signup .g-small{margin:18px auto 0;font-size:14px;color:var(--muted,#6b5f58)}.g-signup .g-small a{color:inherit}
+.g-signup .ml-embedded{margin:0 auto;max-width:440px;text-align:left}.g-signup .ml-form-embedContent{display:none!important}
+.g-signup .ml-embedded .ml-form-embedWrapper{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important}
+html body .g-signup .ml-embedded input.form-control:not(#a):not(#b){background:var(--bg,#f8f4f1)!important}
+@media (max-width:640px){section.g-signup{padding:26px 18px}}
 </style>"""
-for p in ("index.html", "read/index.html"):
+import glob
+for p in [f for f in glob.glob("**/index.html", recursive=True) if 'class="ml-embedded"' in open(f, encoding="utf8").read()]:
     s = open(p, encoding="utf8").read()
     import re
     n = re.sub(r'<style id="ml-css">.*?</style>', "", s, flags=re.S).replace("</head>", CSS + "</head>", 1)

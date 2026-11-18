@@ -29,6 +29,21 @@ def read(s):
     return s.replace("</main>", blk + "</main>", 1)
 edit("index.html", home); edit("read/index.html", read)
 
+# Replace the old Gumroad "Follow" form (home, about, feelings, guides) with the MailerLite card, so there is one list.
+import glob
+GBLOCK = ('<section class="g-signup"><h2>Get new guides by email</h2>'
+          '<p>A short note when a new guide is published, or when the paperback is out. Nothing else, and you can leave at any time.</p>' + FORM +
+          '<p class="g-small">Email goes through MailerLite. <a href="https://youremorenormal.com/privacy/">Privacy note</a>.</p></section>')
+def follow(s, is_home=False):
+    m = re.search(r'<style>\.sub\{.*?</style><form class="sub".*?</form>', s, re.S)
+    if not m: return s
+    s = s.replace(m.group(0), "" if is_home else GBLOCK, 1)
+    if not is_home and "universal.js" not in s: s = s.replace("</head>", UNI + "</head>", 1)
+    return s
+for _p in glob.glob("**/index.html", recursive=True):
+    if _p.startswith("read/"): continue
+    edit(_p, lambda s, _h=(_p == "index.html"): follow(s, _h))
+
 # footer link to /privacy/ on top-level pages
 for p, pre in (("index.html", ""), ("read/index.html", "../"), ("about/index.html", "../"), ("press/index.html", "../")):
     def f(s, pre=pre):
