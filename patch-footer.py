@@ -20,7 +20,7 @@ CSS = ('<style id="foot-css">footer.site-foot{max-width:none!important;margin:0!
        '.sf-cta:hover{opacity:.88}.sf-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin:34px auto 0;padding-top:28px;border-top:1px solid var(--rule,#ddd2c9);max-width:660px}'
        '.sf-nav a{color:var(--ink,#211a17);text-decoration:none;font-weight:500;font-size:15px}.sf-nav a:hover{text-decoration:underline;text-underline-offset:4px}'
        'footer.site-foot a:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:3px;border-radius:6px}.sf-legal{margin:28px 0 0;font-size:13.5px}'
-       '@media (max-width:560px){footer.site-foot{padding:48px 20px 108px!important}.sf-nav{gap:10px 20px}}</style>')
+       '@media (max-width:560px){.sf-brand{flex-direction:column;gap:12px;font-size:20px}footer.site-foot{padding:48px 20px 108px!important}.sf-nav{gap:10px 20px}}</style>')
 n = 0
 for p in glob.glob("**/index.html", recursive=True):
     if p.replace("\\", "/") == "read/ebook/index.html": continue
