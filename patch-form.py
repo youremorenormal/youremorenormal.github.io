@@ -16,7 +16,7 @@ def home(s):
     band = ('<section class="signup" id="signup"><div class="wrap"><div class="sg"><div><p class="eyebrow">By email</p>'
             '<h2 style="margin-top:14px">Take the first chapter with you</h2>'
             '<p class="lead">Leave your email and the first chapter arrives in your inbox, with new guides when they are published. No spam.</p>'
-            '<p class="small">Email goes through MailerLite. <a href="privacy/">Privacy note</a>.</p></div>' + FORM + '</div></div></section>')
+            '</div>' + FORM + '<p class="small">Email goes through MailerLite. <a href="privacy/">Privacy note</a>.</p></div></div></section>')
     k = s.index('<section class="sample"'); e = s.index("</section>", k) + len("</section>")
     return s[:e] + band + s[e:]
 def read(s):
