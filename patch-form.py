@@ -9,12 +9,16 @@ def edit(path, fn):
     if t != s: open(path, "w", encoding="utf8").write(t); print("patched", path)
 
 def home(s):
-    if "ml-embedded" in s: return s
-    s = s.replace("</head>", UNI + "</head>", 1)
-    a = '<p class="small">No sign-up. No checkout.</p>'
-    assert a in s
-    return s.replace(a, a + '\n      <h3 style="margin:28px 0 8px;font-size:20px">Or get the first chapter by email</h3>\n      ' + FORM +
-        '\n      <p class="small">Email goes through MailerLite. <a href="privacy/">Privacy note</a>.</p>', 1)
+    if 'id="signup"' in s: return s
+    if "universal.js" not in s: s = s.replace("</head>", UNI + "</head>", 1)
+    # drop the earlier in-section form (it stretched the sample section)
+    s = re.sub(r'\s*(?:<h3 style="margin:28px 0 8px;font-size:20px">[^<]*</h3>|<div style="height:22px"></div>)\s*<div class="ml-embedded" data-form="j1marl"></div>\s*<p class="small">Email goes through MailerLite\. <a href="privacy/">Privacy note</a>\.</p>', "", s, count=1)
+    band = ('<section class="signup" id="signup"><div class="wrap"><div class="sg"><div><p class="eyebrow">By email</p>'
+            '<h2 style="margin-top:14px">Take the first chapter with you</h2>'
+            '<p class="lead">Leave your email and the first chapter arrives in your inbox, with new guides when they are published. No spam.</p>'
+            '<p class="small">Email goes through MailerLite. <a href="privacy/">Privacy note</a>.</p></div>' + FORM + '</div></div></section>')
+    k = s.index('<section class="sample"'); e = s.index("</section>", k) + len("</section>")
+    return s[:e] + band + s[e:]
 def read(s):
     if "ml-embedded" in s: return s
     s = s.replace("</head>", UNI + "</head>", 1)

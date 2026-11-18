@@ -20,8 +20,14 @@ CSS = """<style id="ml-css">
 .ml-embedded .ml-error input.form-control{border-color:#c0392b!important}
 .ml-embedded .ml-form-successContent h4{margin-bottom:6px!important}
 @media (max-width:380px){.ml-embedded .ml-form-recaptcha{transform:scale(.88)}}
+.signup{padding-block:64px;border-top:1px solid var(--rule,#ddd2c9)}
+.signup .sg{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:56px;align-items:center}
+.signup .lead{max-width:34ch}.signup .small{margin-top:16px;font-size:15px;color:var(--muted)}.signup .ml-embedded{margin:0;max-width:none}
+.signup .ml-form-embedContent{display:none!important}
+@media (max-width:900px){.signup{padding-block:48px}.signup .sg{grid-template-columns:minmax(0,1fr);gap:24px}.signup .ml-embedded{max-width:440px}}
 </style>"""
 for p in ("index.html", "read/index.html"):
     s = open(p, encoding="utf8").read()
-    if 'id="ml-css"' not in s:
-        open(p, "w", encoding="utf8").write(s.replace("</head>", CSS + "</head>", 1)); print("styled", p)
+    import re
+    n = re.sub(r'<style id="ml-css">.*?</style>', "", s, flags=re.S).replace("</head>", CSS + "</head>", 1)
+    if n != s: open(p, "w", encoding="utf8").write(n); print("styled", p)
