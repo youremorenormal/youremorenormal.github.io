@@ -23,7 +23,7 @@ def read(s):
     if "universal.js" not in s: s = s.replace("</head>", UNI + "</head>", 1)
     blk = ('<section class="rd-signup" id="signup"><div><h2>Want more like this?</h2>'
            '<p>Leave your email and the first chapter arrives in your inbox, with new guides when they are published. No spam.</p>'
-           '<p class="rd-small">Email goes through MailerLite. <a href="../privacy/">Privacy note</a>.</p></div>' + FORM + '</section>')
+           '</div>' + FORM + '<p class="rd-small">Email goes through MailerLite. <a href="../privacy/">Privacy note</a>.</p></section>')
     s = re.sub(r'<section style="max-width:680px.*?</section>', "", s, count=1, flags=re.S)
     s = re.sub(r'<section class="rd-signup".*?</section>', "", s, count=1, flags=re.S)
     return s.replace("</main>", blk + "</main>", 1)
