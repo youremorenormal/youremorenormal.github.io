@@ -13,14 +13,14 @@ FOOT = ('<footer class="site-foot"><div class="sf-in">'
         f'<a class="sf-cta" href="https://ahsanrazabooks.gumroad.com/l/sdpapr?wanted=true&amp;utm_source=site&amp;utm_medium=footer" rel="noopener">Get the book</a>'
         f'<nav class="sf-nav" aria-label="Footer">{nav}</nav>'
         '<p class="sf-legal">&copy; 2026 Ahsan Raza &middot; English (British)</p></div></footer>')
-CSS = ('<style id="foot-css">footer.site-foot{max-width:none!important;margin:0!important;padding:60px 20px 76px!important;border-top:1px solid var(--rule,#ddd2c9);text-align:center;color:var(--muted,#6b5f58);font:400 15px/1.5 var(--body,system-ui,sans-serif)!important}'
+CSS = ('<style id="foot-css">footer.site-foot{max-width:none!important;margin:0!important;padding:60px 20px 104px!important;border-top:1px solid var(--rule,#ddd2c9);text-align:center;color:var(--muted,#6b5f58);font:400 15px/1.5 var(--body,system-ui,sans-serif)!important}'
        '.sf-in{max-width:760px;margin:0 auto}.sf-brand{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--ink,#211a17);font:600 21px/1 var(--display,Georgia,serif);letter-spacing:-.01em}'
        '.sf-mark{flex:none;display:block}.sf-tag{margin:14px auto 22px;max-width:36ch;font-size:16px;color:var(--muted,#6b5f58)}'
        '.sf-cta{display:inline-block;padding:12px 26px;border-radius:999px;background:var(--ink,#211a17);color:var(--bg,var(--paper,#f8f4f1))!important;font:600 15px var(--body,system-ui,sans-serif);text-decoration:none}'
        '.sf-cta:hover{opacity:.88}.sf-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 26px;margin:34px auto 0;padding-top:28px;border-top:1px solid var(--rule,#ddd2c9);max-width:660px}'
        '.sf-nav a{color:var(--ink,#211a17);text-decoration:none;font-weight:500;font-size:15px}.sf-nav a:hover{text-decoration:underline;text-underline-offset:4px}'
        'footer.site-foot a:focus-visible{outline:3px solid var(--accent,#b4472a);outline-offset:3px;border-radius:6px}.sf-legal{margin:28px 0 0;font-size:13.5px}'
-       '@media (max-width:560px){footer.site-foot{padding:48px 20px 84px!important}.sf-nav{gap:10px 20px}}</style>')
+       '@media (max-width:560px){footer.site-foot{padding:48px 20px 108px!important}.sf-nav{gap:10px 20px}}</style>')
 n = 0
 for p in glob.glob("**/index.html", recursive=True):
     if p.replace("\\", "/") == "read/ebook/index.html": continue
