@@ -18,8 +18,7 @@ def home(s):
             '<p class="lead">A short note when a new guide is published, or when the paperback is out. Nothing else, and you can leave at any time.</p>'
             '</div>' + FORM + '<p class="small">Email goes through MailerLite. <a href="privacy/">Privacy note</a>.</p></div></div></section>')
     k = s.index('<footer class="wrap">')  # closing slot: after the offer section, before the footer
-    return s[:k] + band + "
-" + s[k:]
+    return s[:k] + band + s[k:]
 def read(s):
     if "universal.js" not in s: s = s.replace("</head>", UNI + "</head>", 1)
     blk = ('<section class="rd-signup" id="signup"><div><h2>Want more like this?</h2>'
