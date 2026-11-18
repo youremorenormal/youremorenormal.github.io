@@ -33,6 +33,9 @@ section.rd-signup#signup{--card:var(--page,#1f1a15);--paper:var(--bg,#17130f);--
 .rd-signup .ml-embedded label,.rd-signup .ml-embedded label *,.rd-signup .ml-embedded .label-description,.rd-signup .ml-embedded .label-description *{color:var(--muted)!important}
 .rd-signup .ml-embedded input.form-control{background:var(--bg)!important;color:var(--ink)!important}
 @media (max-width:700px){section.rd-signup#signup{padding:24px 18px!important}}
+html body .ml-embedded input.form-control:not(#a):not(#b){background:var(--paper,#f8f4f1)!important;color:var(--ink,#211a17)!important;border:1px solid var(--rule-2,#c9bdb2)!important}
+html body .rd-signup .ml-embedded input.form-control:not(#a):not(#b){background:var(--bg)!important}
+html body .rd-signup .ml-embedded .label-description p:not(#a):not(#b),html body .rd-signup .ml-embedded .label-description:not(#a):not(#b){color:var(--muted)!important}
 </style>"""
 for p in ("index.html", "read/index.html"):
     s = open(p, encoding="utf8").read()
