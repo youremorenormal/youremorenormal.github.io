@@ -20,10 +20,12 @@ def home(s):
     k = s.index('<section class="sample"'); e = s.index("</section>", k) + len("</section>")
     return s[:e] + band + s[e:]
 def read(s):
-    if "ml-embedded" in s: return s
-    s = s.replace("</head>", UNI + "</head>", 1)
-    blk = ('<section style="max-width:680px;margin:48px auto 0;padding:0 16px"><h2 style="font-size:24px">Want more like this?</h2>' + FORM +
-           '<p style="font-size:15px">Email goes through MailerLite. <a href="../privacy/">Privacy note</a>.</p></section>')
+    if "universal.js" not in s: s = s.replace("</head>", UNI + "</head>", 1)
+    blk = ('<section class="rd-signup" id="signup"><div><h2>Want more like this?</h2>'
+           '<p>Leave your email and the first chapter arrives in your inbox, with new guides when they are published. No spam.</p>'
+           '<p class="rd-small">Email goes through MailerLite. <a href="../privacy/">Privacy note</a>.</p></div>' + FORM + '</section>')
+    s = re.sub(r'<section style="max-width:680px.*?</section>', "", s, count=1, flags=re.S)
+    s = re.sub(r'<section class="rd-signup".*?</section>', "", s, count=1, flags=re.S)
     return s.replace("</main>", blk + "</main>", 1)
 edit("index.html", home); edit("read/index.html", read)
 

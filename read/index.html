@@ -93,6 +93,12 @@ section#signup{padding:64px 0!important;border-top:1px solid var(--rule,#ddd2c9)
 .signup .lead{max-width:34ch}.signup .small{margin-top:16px;font-size:15px;color:var(--muted)}.signup .ml-embedded{margin:0;max-width:none}
 .signup .ml-form-embedContent{display:none!important}
 @media (max-width:900px){section#signup{padding:44px 0!important}.signup .sg{grid-template-columns:minmax(0,1fr);gap:24px}.signup .ml-embedded{max-width:440px}}
+.rd-signup{--card:var(--page,#1f1a15);--paper:var(--bg,#17130f);--rule-2:var(--rule,#3a312a);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:36px;align-items:center;margin:40px 0 8px;padding:34px;background:var(--page);border:1px solid var(--rule);border-radius:14px}
+.rd-signup h2{margin:0 0 10px;font-size:26px;line-height:1.15;color:var(--ink)}.rd-signup p{margin:0 0 10px;color:var(--ink);font-size:17px;line-height:1.55}
+.rd-signup .rd-small{font-size:14px;color:var(--muted)}.rd-signup .rd-small a{color:inherit}
+.rd-signup .ml-embedded{margin:0;max-width:none}.rd-signup .ml-form-embedContent{display:none!important}
+.rd-signup .ml-form-embedWrapper{background:var(--bg)!important;box-shadow:none!important}
+@media (max-width:700px){.rd-signup{grid-template-columns:minmax(0,1fr);gap:20px;padding:22px 18px}}
 </style></head>
 <body>
 <a class="skip" href="#text">Skip to the text</a>
@@ -215,7 +221,7 @@ section#signup{padding:64px 0!important;border-top:1px solid var(--rule,#ddd2c9)
       <a class="alt" href="../sample/Youre-More-Normal-Than-You-Think-free-sample.epub" download>Download the sample (EPUB)</a>
     </div>
   </section>
-<section style="max-width:680px;margin:48px auto 0;padding:0 16px"><h2 style="font-size:24px">Want more like this?</h2><div class="ml-embedded" data-form="j1marl"></div><p style="font-size:15px">Email goes through MailerLite. <a href="../privacy/">Privacy note</a>.</p></section></main>
+<section class="rd-signup" id="signup"><div><h2>Want more like this?</h2><p>Leave your email and the first chapter arrives in your inbox, with new guides when they are published. No spam.</p><p class="rd-small">Email goes through MailerLite. <a href="../privacy/">Privacy note</a>.</p></div><div class="ml-embedded" data-form="j1marl"></div></section></main>
 <footer>&copy; Ahsan Raza. English (British). <a href="../">Back to the book page</a> &middot; <a href="../about/">About the author</a> &middot; <a href="../press/">For reviewers and podcast hosts</a> &middot; <a href="../privacy/">Privacy</a></footer>
 <div class="status" id="status" aria-live="polite"></div>
 <div class="toast" id="toast" role="status"><span id="toastText"></span><button type="button" id="toastYes">Continue</button><button type="button" id="toastNo">Start again</button></div>
