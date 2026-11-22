@@ -18,7 +18,7 @@ for f in sorted(glob.glob(GDIR + "/*.md")):
     links = [x.strip() for x in m.get("internal links", "").split(",") if x.strip()]
     art = markdown.markdown(art.strip(), extensions=["extra", "sane_lists", "smarty"],
                             extension_configs={"smarty": {"smart_dashes": False, "substitutions": {"left-single-quote": "&#8216;", "right-single-quote": "&#8217;", "left-double-quote": "&#8220;", "right-double-quote": "&#8221;", "ellipsis": "&#8230;"}}})
-    guides.append(dict(slug=slug, title=m["page title"], desc=m["meta description"], links=links, html=art, mtime=os.path.getmtime(f)))
+    guides.append(dict(slug=slug, title=m["page title"], desc=m["meta description"], links=links, html=art, mtime=os.path.getmtime(f), date=m.get("published","2026-11-16")))
 
 titles = {slug: (h1, ch) for slug, ch, h1, *_r in P}
 urls_g = []
@@ -31,7 +31,7 @@ for g in guides:
     rel = "".join(f'<li><a href="{BASE}feelings/{s}/">{sm_(titles[s][0])}</a><span>From chapter: {sm_(titles[s][1])}</span></li>' for s in g["links"] if s in titles)
     ld = json.dumps({"@context": "https://schema.org", "@type": "Article", "headline": g["title"], "description": g["desc"], "url": url,
                      "inLanguage": "en-GB", "author": {"@type": "Person", "name": "Ahsan Raza"},
-                     "datePublished": "2026-11-16", "dateModified": "2026-11-16",
+                     "datePublished": g["date"], "dateModified": g["date"],
                      "isPartOf": {"@type": "Book", "name": "You're More Normal Than You Think", "author": {"@type": "Person", "name": "Ahsan Raza"}}})
     bc = json.dumps({"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "You're More Normal Than You Think", "item": BASE},
@@ -58,7 +58,7 @@ open("guides/index.html", "w", encoding="utf8").write(hub)
 
 sm = open("sitemap.xml", encoding="utf8").read()
 sm = re.sub(r"<url><loc>[^<]*guides/[^<]*</loc>.*?</url>", "", sm)
-add = "".join(f"<url><loc>{u}</loc><lastmod>2026-11-16</lastmod></url>" for u in [hub_url] + urls_g)
+add = "".join(f"<url><loc>{u}</loc><lastmod>{d}</lastmod></url>" for u, d in [(hub_url, max(g["date"] for g in guides))] + [(u, g["date"]) for u, g in zip(urls_g, guides)])
 open("sitemap.xml", "w", encoding="utf8").write(sm.replace("</urlset>", add + "</urlset>"))
 print("guides pages:", len(guides) + 1)
 
