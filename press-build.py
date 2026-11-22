@@ -35,7 +35,7 @@ CSS_P = """<style>.pbook{display:grid;grid-template-columns:200px 1fr;gap:28px;a
 extra = CSS_P + "".join(f'<script type="application/ld+json">{json.dumps(x)}</script>' for x in (book_ld, page_ld, bc_ld))
 G = BASE + "guides/"
 # Apple Books page returned 404 on 17 Nov 2026 (not on sale yet); set True once books.apple.com/us/book/id6832732682 loads
-APPLE_LIVE = False
+APPLE_LIVE = True
 APPLE_LI = '<li><a href="https://books.apple.com/us/book/id6832732682" rel="noopener">Apple Books</a></li>' if APPLE_LIVE else ""
 body = f"""<div class="press"><p class="crumb"><a href="{BASE}">The book</a> / For reviewers and podcast hosts</p>
 <h1>For reviewers and podcast hosts</h1>
