@@ -1,5 +1,5 @@
 """One-off, safe to re-run: adds the MailerLite form + privacy page. Works on built files (build-site.py is not re-runnable)."""
-import re
+import re, glob
 UNI = ("<!-- MailerLite Universal -->\n<script>\n(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])\n"
        ".push(arguments);},l=d.createElement(e),l.async=1,l.src=u,\nn=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})\n"
        "(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');\nml('account', '2803635');\n</script>\n<!-- End MailerLite Universal -->\n")
@@ -16,18 +16,20 @@ def home(s):
     band = ('<section class="signup" id="signup"><div class="wrap"><div class="sg"><div><p class="eyebrow">By email</p>'
             '<h2 style="margin-top:14px">Get new guides by email</h2>'
             '<p class="lead">A short note when a new guide is published, or when the paperback is out. Nothing else, and you can leave at any time.</p>'
-            '</div>' + FORM + '<p class="small"><a href="privacy/">Privacy note</a></p></div></div></section>')
+            '</div>' + FORM + '</div></div></section>')
     k = s.index('<footer')  # closing slot: after the offer section, before the footer
     return s[:k] + band + s[k:]
 def read(s):
     if "universal.js" not in s: s = s.replace("</head>", UNI + "</head>", 1)
     blk = ('<section class="rd-signup" id="signup"><div><h2>Want more like this?</h2>'
            '<p>A short note when a new guide is published, or when the paperback is out. Nothing else, and you can leave at any time.</p>'
-           '</div>' + FORM + '<p class="rd-small"><a href="../privacy/">Privacy note</a></p></section>')
+           '</div>' + FORM + '</section>')
     s = re.sub(r'<section style="max-width:680px.*?</section>', "", s, count=1, flags=re.S)
     s = re.sub(r'<section class="rd-signup".*?</section>', "", s, count=1, flags=re.S)
     return s.replace("</main>", blk + "</main>", 1)
 edit("index.html", home); edit("read/index.html", read)
+for _f in glob.glob("**/index.html", recursive=True):
+    edit(_f, lambda s: re.sub(r'<p class="(?:small|rd-small|g-small)"><a href="[^"]*privacy/">Privacy note</a></p>', "", s))
 import glob as _g
 for _f in _g.glob("**/index.html", recursive=True):
     edit(_f, lambda s: re.sub(r'Email goes through MailerLite\. (<a [^>]*>Privacy note</a>)\.', r'', s))
@@ -36,7 +38,7 @@ for _f in _g.glob("**/index.html", recursive=True):
 import glob
 GBLOCK = ('<section class="g-signup"><h2>Get new guides by email</h2>'
           '<p>A short note when a new guide is published, or when the paperback is out. Nothing else, and you can leave at any time.</p>' + FORM +
-          '<p class="g-small"><a href="https://youremorenormal.com/privacy/">Privacy note</a></p></section>')
+          '</section>')
 def follow(s, is_home=False):
     m = re.search(r'<style>\.sub\{.*?</style><form class="sub".*?</form>', s, re.S)
     if not m: return s
