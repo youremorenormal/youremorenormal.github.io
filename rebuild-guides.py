@@ -11,6 +11,6 @@ exec(open("guides-build.py", encoding="utf8").read())
 # Patch only guide pages: re-patching old pages reorders their <style> blocks (harmless but noisy diffs).
 _real_glob = _g.glob
 _g.glob = lambda pat, *a, **k: [x for x in _real_glob(pat, *a, **k) if x.replace("\\", "/").startswith("guides/")]
-for _p in ("patch-viewer.py", "patch-form.py", "patch-form-style.py", "patch-logo.py", "patch-steps.py", "patch-nav.py", "patch-mobile.py", "patch-footer.py", "patch-buttons.py"):
+for _p in ("patch-viewer.py", "patch-form.py", "patch-form-style.py", "patch-logo.py", "patch-steps.py", "patch-nav.py", "patch-mobile.py", "patch-footer.py", "patch-buttons.py", "patch-overflow.py"):
     exec(open(_p, encoding="utf8").read())
 open("index.html", "wb").write(_home)
